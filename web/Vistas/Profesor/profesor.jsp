@@ -4,6 +4,7 @@
     Author     : DarkS
 --%>
 
+<%@page import="Conexion.ConexionEstatica"%>
 <%@page import="Usuario.ReservaDetalle"%>
 <%@page import="java.util.Date"%>
 <%@page import="Usuario.ReservaAula"%>
@@ -34,10 +35,11 @@
 
             if (session.getAttribute("usuarioLog") != null) {
                 usuarioLog = (Usuario) session.getAttribute("usuarioLog");
-            } 
 
-            if (session.getAttribute("reservasProfesor") != null) {
-                reservasProfesor = (ArrayList<Reserva>) session.getAttribute("reservasProfesor");
+                //Obtener todas las reservas de la tabla reservas
+                ConexionEstatica.abrirBD();
+                reservasProfesor = ConexionEstatica.obtenerReservasAulaProfesor(usuarioLog);
+                ConexionEstatica.cerrarBD();
             }
 
             if (session.getAttribute("aula") != null) {
@@ -60,29 +62,31 @@
         %>
         <form name="frmProfesor" action="../../controlador.jsp" method="POST">
             <div id="profesor">
-                ELIGE FECHA<input type="date" name="fecha" id="fecha"><br><br>
-                ELIGE AULA
-                <select id="aula" name="aula">
-                    <%                        for (int idx = 0; idx < aulas.size(); idx++) {
-                            Aula aula = (Aula) aulas.get(idx);
-                    %>
-                    <%
-                    if(idx==0){
-                    %>
-                    <option selected value="<%out.print(aula.getCodAula());%>"><%out.print(aula.getCodAula());%></option>
-                    <%    
-                    }else{
-                    %>
-                    <option value="<%out.print(aula.getCodAula());%>"><%out.print(aula.getCodAula());%></option>
-                    <%
-                    }
-                    %>
-                    <%
-                        }
-                    %>
-                </select>
-                <br><br>
-                <input type="submit" name="boton" value="Ver cuadrante"><br>
+                <div id="aulas_tabla">
+                    ELIGE FECHA<input type="date" name="fecha" id="fecha"><br><br>
+                    ELIGE AULA
+                    <select id="aula" name="aula">
+                        <%                        for (int idx = 0; idx < aulas.size(); idx++) {
+                                Aula aula = (Aula) aulas.get(idx);
+                        %>
+                        <%
+                            if (idx == 0) {
+                        %>
+                        <option selected value="<%out.print(aula.getCodAula());%>"><%out.print(aula.getCodAula());%></option>
+                        <%
+                        } else {
+                        %>
+                        <option value="<%out.print(aula.getCodAula());%>"><%out.print(aula.getCodAula());%></option>
+                        <%
+                            }
+                        %>
+                        <%
+                            }
+                        %>
+                    </select>
+                    <br><br>
+                    <input type="submit" name="boton" value="Ver cuadrante"><br>
+                </div>
                 <%
                     if (reservas != null) {
                 %>

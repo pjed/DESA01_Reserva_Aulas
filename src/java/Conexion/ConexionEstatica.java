@@ -2,6 +2,7 @@ package Conexion;
 
 import Costantes.Constantes;
 import Usuario.Aula;
+import Usuario.Franja;
 import Usuario.Reserva;
 import Usuario.ReservaAula;
 import Usuario.ReservaDetalle;
@@ -139,17 +140,33 @@ public class ConexionEstatica {
         return aulas;
     }
 
+    public static ArrayList<Franja> obtenerFranjas() {
+        ArrayList<Franja> franjas = new ArrayList<Franja>();
+        Franja franja;
+        try {
+            String sentencia = "SELECT * FROM franjas";
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while (Conj_Registros.next()) {
+
+                franja = new Franja(Conj_Registros.getString("ID_FRANJA"), Conj_Registros.getString("INICIO"), Conj_Registros.getString("FIN"));
+                franjas.add(franja);
+            }
+        } catch (SQLException ex) {
+        }
+        return franjas;
+    }
+
     public static ArrayList<ReservaAula> obtenerReservasFecha(String fecha, String aula) {
         ArrayList<ReservaAula> reservas = new ArrayList<ReservaAula>();
         ReservaAula reserva;
         try {
-            String sentencia = "SELECT a.ID_RESERVA, b.ID_FRANJA, b.INICIO, b.FIN, CASE WHEN a.FECHA  IS NULL THEN 'Libre' ELSE 'Reservado' END AS ESTADO_RESERVA \n" +
-                                "FROM (aulas.reservas as a \n" +
-                                "INNER JOIN aulas.aulas as c\n" +
-                                "ON a.AULAS_COD_AULA = c.COD_AULA and c.COD_AULA='"+aula+"')\n" +
-                                "RIGHT JOIN aulas.franjas as b \n" +
-                                "ON a.FRANJAS_ID_FRANJA = b.ID_FRANJA AND FECHA = DATE('"+fecha+"') \n" +
-                                "ORDER BY ID_FRANJA;";
+            String sentencia = "SELECT a.ID_RESERVA, b.ID_FRANJA, b.INICIO, b.FIN, CASE WHEN a.FECHA  IS NULL THEN 'Libre' ELSE 'Reservado' END AS ESTADO_RESERVA \n"
+                    + "FROM (aulas.reservas as a \n"
+                    + "INNER JOIN aulas.aulas as c\n"
+                    + "ON a.AULAS_COD_AULA = c.COD_AULA and c.COD_AULA='" + aula + "')\n"
+                    + "RIGHT JOIN aulas.franjas as b \n"
+                    + "ON a.FRANJAS_ID_FRANJA = b.ID_FRANJA AND FECHA = DATE('" + fecha + "') \n"
+                    + "ORDER BY ID_FRANJA;";
 
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
             while (Conj_Registros.next()) {
@@ -171,11 +188,11 @@ public class ConexionEstatica {
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
             while (Conj_Registros.next()) {
 
-                reserva = new Reserva(String.valueOf(Conj_Registros.getInt("ID_RESERVA")), 
-                        Conj_Registros.getDate("FECHA").toString(), 
-                        String.valueOf(Conj_Registros.getInt("ID_FRANJA")), 
-                        Conj_Registros.getString("INICIO"), 
-                        Conj_Registros.getString("FIN"), 
+                reserva = new Reserva(String.valueOf(Conj_Registros.getInt("ID_RESERVA")),
+                        Conj_Registros.getDate("FECHA").toString(),
+                        String.valueOf(Conj_Registros.getInt("ID_FRANJA")),
+                        Conj_Registros.getString("INICIO"),
+                        Conj_Registros.getString("FIN"),
                         String.valueOf(Conj_Registros.getInt("AULAS_COD_AULA")), Conj_Registros.getString("USUARIOS_DNI_USUARIOS"));
                 reservas.add(reserva);
             }
@@ -233,9 +250,24 @@ public class ConexionEstatica {
         //String Sentencia = "UPDATE " + tabla + " SET NUM_SESION = '" + sesion + "' WHERE USUARIO = '" + usuario.getUsuario() + "'";
         //Sentencia_SQL.executeUpdate(Sentencia);
     }
+    
+    public static void Modificar_Aula(String tabla, int codAula, String descAula) throws SQLException {
+        String Sentencia = "UPDATE " + tabla + " SET DESCRIPCION = '" + descAula + "' WHERE COD_AULA = " + codAula + ";";
+        Sentencia_SQL.executeUpdate(Sentencia);
+    }
+    
+    public static void Borrar_Aula(String tabla, int codAula) throws SQLException {
+        String Sentencia = "DELETE FROM " + tabla + " WHERE COD_AULA = " + codAula + ";";
+        Sentencia_SQL.executeUpdate(Sentencia);
+    }
 
     public static void Modificar_Contrasena(String tabla, String password, Usuario usuario) throws SQLException {
         String Sentencia = "UPDATE " + tabla + " SET PASSWORD = '" + password + "', PASSWORD_REP = '" + password + "' WHERE DNI_USUARIO = '" + usuario.getDni() + "'";
+        Sentencia_SQL.executeUpdate(Sentencia);
+    }
+    
+    public static void Modificar_Franja(String tabla, int idFranja, String inicio, String fin) throws SQLException {
+        String Sentencia = "UPDATE " + tabla + " SET INICIO = '" + inicio + "', FIN = '" + fin + "' WHERE ID_FRANJA = " + idFranja + ";";
         Sentencia_SQL.executeUpdate(Sentencia);
     }
 
@@ -267,6 +299,23 @@ public class ConexionEstatica {
                 + idFranja + "',"
                 + codAula + ",'"
                 + dniUsuario + "')";
+        Sentencia_SQL.execute(Sentencia);
+    }
+
+    public static void Insertar_Aula(String tabla, String codAula, String descAula) throws SQLException {
+        String Sentencia = "INSERT INTO " + tabla
+                + " VALUES ("
+                + Integer.parseInt(codAula) + ",'"
+                + descAula + "')";
+        Sentencia_SQL.execute(Sentencia);
+    }
+
+    public static void Insertar_Franja(String tabla, String idFranja, String inicio, String fin) throws SQLException {
+        String Sentencia = "INSERT INTO " + tabla
+                + " VALUES ("
+                + Integer.parseInt(idFranja) + ",'"
+                + inicio + "','"
+                + fin + "')";
         Sentencia_SQL.execute(Sentencia);
     }
 

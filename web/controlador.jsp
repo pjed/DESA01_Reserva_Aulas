@@ -4,6 +4,7 @@
     Author     : DarkS
 --%>
 
+<%@page import="Usuario.Franja"%>
 <%@page import="Usuario.ReservaDetalle"%>
 <%@page import="Usuario.ReservaAula"%>
 <%@page import="Usuario.Reserva"%>
@@ -17,9 +18,10 @@
 <%
     //TODO Comprobar como hacer de que redireccione cuando la sesión expira
     String boton;
+    String rolSeleccionado = "";
     HttpSession sesion = request.getSession();
     sesion.setMaxInactiveInterval(60);
-    
+
     if (request.getParameter("boton") != null) {
         boton = (String) request.getParameter("boton");
 
@@ -157,17 +159,27 @@
 
         //Pantalla seleccionar rol entrar para entrar como seleccione el usuario
         if (boton.equals("Entrar")) {
-            String rolSeleccionado = request.getParameter("selectPerfil");
+            rolSeleccionado = request.getParameter("selectPerfil");
 
             if (rolSeleccionado.equals("1")) {
+                session.setAttribute("rolSeleccionado", rolSeleccionado);
                 response.sendRedirect("Vistas/Administrador_General/admin_general.jsp");
             }
 
             if (rolSeleccionado.equals("2")) {
+                session.setAttribute("rolSeleccionado", rolSeleccionado);
+                //Obtenemos todas las aulas de la BBDD
+                ConexionEstatica.abrirBD();
+                ArrayList<Aula> aulas = ConexionEstatica.obtenerAulas();
+                ConexionEstatica.cerrarBD();
+
+                //guardamos las aulas en sesion
+                session.setAttribute("aulas", aulas);
                 response.sendRedirect("Vistas/Administrador_Aula/admin_aula.jsp");
             }
 
             if (rolSeleccionado.equals("3")) {
+                session.setAttribute("rolSeleccionado", rolSeleccionado);
 
                 //Obtenemos todas las aulas de la BBDD
                 ConexionEstatica.abrirBD();
@@ -193,7 +205,22 @@
             ConexionEstatica.cerrarBD();
 
             session.setAttribute("reservas", reservas);
-            response.sendRedirect("Vistas/Profesor/profesor.jsp");
+            String rol = (String) session.getAttribute("rolSeleccionado");
+
+            if (rol.equals("1")) {
+                //Administrador General
+                response.sendRedirect("Vistas/Administrador_Aula/admin_aula.jsp");
+            }
+
+            if (rol.equals("2")) {
+                //Administrador Aula
+                response.sendRedirect("Vistas/Administrador_Aula/admin_aula.jsp");
+            }
+
+            if (rol.equals("3")) {
+                //Profesor
+                response.sendRedirect("Vistas/Profesor/profesor.jsp");
+            }
         }
 
         if (boton.equals("Eliminar Reserva")) {
@@ -222,8 +249,8 @@
                 ConexionEstatica.cerrarBD();
 
                 session.setAttribute("reservasProfesor", reservasProfesor);
-                response.sendRedirect("Vistas/Profesor/profesor.jsp");
-            } 
+            }
+            response.sendRedirect("Vistas/Profesor/profesor.jsp");
         }
 
         if (boton.equals("Ver Detalles")) {
@@ -239,7 +266,7 @@
                 ConexionEstatica.cerrarBD();
                 session.setAttribute("rdSeleccionada", rdSeleccionada);
                 response.sendRedirect("Vistas/Profesor/profesor.jsp");
-            } 
+            }
         }
         if (boton.equals("Libre")) {
             Usuario usuario = null;
@@ -255,8 +282,18 @@
                 ConexionEstatica.Insertar_Reserva("reservas", dniUsuario, idFranja, codAula, fecha);
                 ConexionEstatica.cerrarBD();
 
-                response.sendRedirect("Vistas/Profesor/profesor.jsp");
-            } 
+            }
+            if (session.getAttribute("rolSeleccionado") != null) {
+                String rol = (String) session.getAttribute("rolSeleccionado");
+                
+                
+                if(rol.equals("3")){
+                    response.sendRedirect("Vistas/Profesor/profesor.jsp");
+                }
+                if(rol.equals("2")){
+                    response.sendRedirect("Vistas/Administrador_Aula/admin_aula.jsp");
+                }
+            }
         }
 
         if (boton.equals("Volver")) {
@@ -270,7 +307,50 @@
                 Bitacora.Bitacora.escribirBitacora("El usuario " + usuario.getNombre() + " ha cerrado sesión.");
                 session.invalidate();
                 response.sendRedirect("index.jsp");
-            } 
+            }
+        }
+
+        if (boton.equals("Gestionar aula")) {
+            response.sendRedirect("Vistas/Administrador_Aula/gestaula.jsp");
+        }
+
+        if (boton.equals("Gestionar franjas horarias")) {
+            response.sendRedirect("Vistas/Administrador_Aula/gestfranjas.jsp");
+        }
+
+        if (boton.equals("                     Add Aula")) {
+            String codAula = request.getParameter("nuevoCod");
+            String descAula = request.getParameter("nuevaDesc");
+            ConexionEstatica.abrirBD();
+            ConexionEstatica.Insertar_Aula("aulas", codAula, descAula);
+            ConexionEstatica.cerrarBD();
+            response.sendRedirect("Vistas/Administrador_Aula/gestaula.jsp");
+        }
+
+        if (boton.equals("                     Modificar Aula")) {
+            String codAula = (String) request.getParameter("codAula");
+            String descAula = (String) request.getParameter("descripcion");
+            ConexionEstatica.abrirBD();
+            ConexionEstatica.Modificar_Aula("aulas", Integer.parseInt(codAula), descAula);
+            ConexionEstatica.cerrarBD();
+            response.sendRedirect("Vistas/Administrador_Aula/gestaula.jsp");
+        }
+
+        if (boton.equals("                     Eliminar Aula")) {
+            String codAula = (String) request.getParameter("codAula");
+            ConexionEstatica.abrirBD();
+            ConexionEstatica.Borrar_Aula("aulas", Integer.parseInt(codAula));
+            ConexionEstatica.cerrarBD();
+            response.sendRedirect("Vistas/Administrador_Aula/gestaula.jsp");
+        }
+        if (boton.equals("                     Modificar Franja")) {
+            String idFranja = (String) request.getParameter("idFranja");
+            String inicio = (String) request.getParameter("inicio");
+            String fin = (String) request.getParameter("fin");
+            ConexionEstatica.abrirBD();
+            ConexionEstatica.Modificar_Franja("franjas", Integer.parseInt(idFranja), inicio, fin);
+            ConexionEstatica.cerrarBD();
+            response.sendRedirect("Vistas/Administrador_Aula/gestfranjas.jsp");
         }
     }
 %>

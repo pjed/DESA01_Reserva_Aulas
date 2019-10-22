@@ -12,6 +12,10 @@
         <title>Panel Administrador General</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Panel Administrador General</h1>
+        <form name="frmAdminGeneral" action="../../controlador.jsp" method="POST">
+            <input type="submit" name="boton" value="Gestionar Usuarios">
+            <input type="submit" name="boton" value="Ver Bitacora">
+        </form>
     </body>
 </html>
