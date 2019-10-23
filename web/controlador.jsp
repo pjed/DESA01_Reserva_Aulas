@@ -368,8 +368,12 @@
                 if (rolSeleccionado.equals("3")) {
                     rol = "Profesor";
                 }
-
-                Bitacora.Bitacora.escribirBitacora("Cerra sesión el usuario", usuario.getCorreo(), rol);
+                if (rolSeleccionado.equals("4")) {
+                    rol = "Ver perfil";
+                    Bitacora.Bitacora.escribirBitacora("El usuario ha modificado su perfil ", usuario.getCorreo(), rol);
+                }
+                
+                Bitacora.Bitacora.escribirBitacora("El usuario ha cerrado sesión", usuario.getCorreo(), rol);
                 session.invalidate();
                 response.sendRedirect("index.jsp");
             }
@@ -465,6 +469,7 @@
         }
 
         if (boton.equals("Ver Perfil")) {
+            session.setAttribute("rolSeleccionado", "4");
             response.sendRedirect("Vistas/perfil_usuario.jsp");
         }
     }

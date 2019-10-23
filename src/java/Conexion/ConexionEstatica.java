@@ -406,4 +406,27 @@ public class ConexionEstatica {
             }
         }
     }
+    
+    public static void Modificar_SetFotoNull(String tabla, Usuario usuario) {
+        String sql = "UPDATE usuarios SET FOTO = ?, FOTO_DEFECTO =? WHERE DNI_USUARIO =?;";
+        PreparedStatement ps = null;
+
+        try {
+            ps = ConexionEstatica.Conex.prepareStatement(sql);
+            ps.setBytes(1, null);
+            ps.setString(2, "img/sin_foto.png");
+            ps.setString(3, usuario.getDni());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("Error de SQL: " + ex.getMessage());
+        } catch (Exception ex) {
+            System.out.println("Error general: " + ex.getMessage());
+        } finally {
+            try {
+                ps.close();
+            } catch (Exception ex) {
+                System.out.println("Error general: " + ex.getMessage());
+            }
+        }
+    }
 }

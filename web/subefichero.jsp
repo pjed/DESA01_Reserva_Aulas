@@ -50,6 +50,10 @@
                     //Este directorio, por seguridad, luego no será accesible.
                     String rutaDestino = "/home/daw201/";
                     File fichero = new File(rutaDestino, usuarioLog.getDni()); //El archivo se guardará en 'glassfish5/glassfish/domains/domain1/config/perfiles'.
+                    if(fichero.exists()){
+                        fichero.delete();
+                    }
+                    fichero = new File(rutaDestino, usuarioLog.getDni());
                     uploaded.write(fichero);
                     //Pasamos a binario la imagen para almacenarla en MySQL en el campo BLOB.
                     byte[] icono = new byte[(int) fichero.length()];
@@ -76,9 +80,9 @@
                 }
             }
             ConexionEstatica.abrirBD();
+            ConexionEstatica.Modificar_SetFotoNull("usuarios",usuarioLog);
             ConexionEstatica.Modificar_UsuarioFoto("usuarios",usuarioLog);
             ConexionEstatica.cerrarBD();
-            usuarioLog.setFoto_defecto(null);
             session.setAttribute("usuarioLog", usuarioLog);
             response.sendRedirect("Vistas/perfil_usuario.jsp");
         %>
