@@ -74,7 +74,7 @@ public class ConexionEstatica {
             ConexionEstatica.Conj_Registros = sentenciaPreparada.executeQuery();
             if (ConexionEstatica.Conj_Registros.next())//Si devuelve true es que existe.
             {
-                existe = new Usuario(Conj_Registros.getString("DNI_USUARIO"), Conj_Registros.getString("USUARIO"), Conj_Registros.getString("PASSWORD"), Conj_Registros.getString("ACTIVO"), Conj_Registros.getString("FOTO"), Conj_Registros.getString("CORREO"), Conj_Registros.getString("NOMBRE"), Conj_Registros.getString("APELLIDOS"), Conj_Registros.getInt("EDAD"), Conj_Registros.getString("PASSWORD_REP"));
+                existe = new Usuario(Conj_Registros.getString("DNI_USUARIO"), Conj_Registros.getString("USUARIO"), Conj_Registros.getString("PASSWORD"), Conj_Registros.getString("ACTIVO"), Conj_Registros.getBytes(5), Conj_Registros.getBlob(5), Conj_Registros.getString("FOTO_DEFECTO"), Conj_Registros.getString("CORREO"), Conj_Registros.getString("NOMBRE"), Conj_Registros.getString("APELLIDOS"), Conj_Registros.getInt("EDAD"), Conj_Registros.getString("PASSWORD_REP"));
             }
         } catch (SQLException ex) {
             System.out.println("Error en el acceso a la BD.");
@@ -140,20 +140,27 @@ public class ConexionEstatica {
         return aulas;
     }
 
-    public static ArrayList<Franja> obtenerFranjas() {
-        ArrayList<Franja> franjas = new ArrayList<Franja>();
-        Franja franja;
+    public static ArrayList<Usuario> obtenerUsuarios() {
+        ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+        Usuario usuario;
         try {
-            String sentencia = "SELECT * FROM franjas";
+            String sentencia = "SELECT a.DNI_USUARIO, a.CORREO, a.NOMBRE, a.APELLIDOS, a.EDAD, a.ACTIVO, b.ID_ROL, c.DESC_ROL FROM usuarios as a, rol_usuarios as b, roles as c where a.DNI_USUARIO = b.DNI_USUARIO and b.ID_ROL = c.ID_ROL order by DNI_USUARIO, ID_ROL;";
             ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
             while (Conj_Registros.next()) {
-
-                franja = new Franja(Conj_Registros.getString("ID_FRANJA"), Conj_Registros.getString("INICIO"), Conj_Registros.getString("FIN"));
-                franjas.add(franja);
+                String dni = Conj_Registros.getString("DNI_USUARIO");
+                String correo = Conj_Registros.getString("CORREO");
+                String nombre = Conj_Registros.getString("NOMBRE");
+                String apellidos = Conj_Registros.getString("APELLIDOS");
+                int edad = Conj_Registros.getInt("EDAD");
+                String activo = Conj_Registros.getString("ACTIVO");
+                String idRol = Conj_Registros.getString("ID_ROL");
+                String descRol = Conj_Registros.getString("DESC_ROL");
+                usuario = new Usuario(dni, correo, nombre, apellidos, edad, activo, idRol, descRol);
+                usuarios.add(usuario);
             }
         } catch (SQLException ex) {
         }
-        return franjas;
+        return usuarios;
     }
 
     public static ArrayList<ReservaAula> obtenerReservasFecha(String fecha, String aula) {
@@ -250,12 +257,12 @@ public class ConexionEstatica {
         //String Sentencia = "UPDATE " + tabla + " SET NUM_SESION = '" + sesion + "' WHERE USUARIO = '" + usuario.getUsuario() + "'";
         //Sentencia_SQL.executeUpdate(Sentencia);
     }
-    
+
     public static void Modificar_Aula(String tabla, int codAula, String descAula) throws SQLException {
         String Sentencia = "UPDATE " + tabla + " SET DESCRIPCION = '" + descAula + "' WHERE COD_AULA = " + codAula + ";";
         Sentencia_SQL.executeUpdate(Sentencia);
     }
-    
+
     public static void Borrar_Aula(String tabla, int codAula) throws SQLException {
         String Sentencia = "DELETE FROM " + tabla + " WHERE COD_AULA = " + codAula + ";";
         Sentencia_SQL.executeUpdate(Sentencia);
@@ -265,7 +272,7 @@ public class ConexionEstatica {
         String Sentencia = "UPDATE " + tabla + " SET PASSWORD = '" + password + "', PASSWORD_REP = '" + password + "' WHERE DNI_USUARIO = '" + usuario.getDni() + "'";
         Sentencia_SQL.executeUpdate(Sentencia);
     }
-    
+
     public static void Modificar_Franja(String tabla, int idFranja, String inicio, String fin) throws SQLException {
         String Sentencia = "UPDATE " + tabla + " SET INICIO = '" + inicio + "', FIN = '" + fin + "' WHERE ID_FRANJA = " + idFranja + ";";
         Sentencia_SQL.executeUpdate(Sentencia);
@@ -278,18 +285,37 @@ public class ConexionEstatica {
 
     //----------------------------------------------------------
     public static void Insertar_Dato(String tabla, Usuario usuario) throws SQLException {
-        String Sentencia = "INSERT INTO " + tabla
-                + " VALUES ('" + usuario.getDni() + "','"
-                + usuario.getNombre_usuario() + "','"
-                + usuario.getPassword() + "',"
-                + usuario.getActivo() + ",'"
-                + usuario.getFoto() + "','"
-                + usuario.getCorreo() + "','"
-                + usuario.getNombre() + "','"
-                + usuario.getApellidos() + "','"
-                + usuario.getEdad() + "','"
-                + usuario.getPassword_rep() + "')";
-        Sentencia_SQL.execute(Sentencia);
+        String sql = "INSERT INTO usuarios (DNI_USUARIO, USUARIO, PASSWORD, ACTIVO, FOTO, FOTO_DEFECTO,"
+                + "CORREO,NOMBRE, APELLIDOS, EDAD, PASSWORD_REP) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+
+        PreparedStatement ps = null;
+
+        try {
+            ps = ConexionEstatica.Conex.prepareStatement(sql);
+            ps.setString(1, usuario.getDni());
+            ps.setString(2, usuario.getNombre_usuario());
+            ps.setString(3, usuario.getPassword());
+            ps.setString(4, usuario.getActivo());
+            ps.setBytes(5, usuario.getFoto());
+            ps.setString(6, usuario.getFoto_defecto());
+            ps.setString(7, usuario.getCorreo());
+            ps.setString(8, usuario.getNombre());
+            ps.setString(9, usuario.getApellidos());
+            ps.setInt(10, usuario.getEdad());
+            ps.setString(11, usuario.getPassword_rep());
+
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("Error de SQL: " + ex.getMessage());
+        } catch (Exception ex) {
+            System.out.println("Error general: " + ex.getMessage());
+        } finally {
+            try {
+                ps.close();
+            } catch (Exception ex) {
+                System.out.println("Error general: " + ex.getMessage());
+            }
+        }
     }
 
     public static void Insertar_Reserva(String tabla, String dniUsuario, String idFranja, String codAula, String fecha) throws SQLException {
@@ -325,4 +351,59 @@ public class ConexionEstatica {
         Sentencia_SQL.executeUpdate(Sentencia);
     }
 
+    public static void Modificar_Usuario(String tabla, String dni, String nombre, String apellidos, String edad, String activo) throws SQLException {
+        String Sentencia = "UPDATE " + tabla + " SET NOMBRE = '" + nombre + "', APELLIDOS = '" + apellidos + "', EDAD = '" + edad + "', ACTIVO=" + Integer.parseInt(activo) + " WHERE DNI_USUARIO = '" + dni + "';";
+        Sentencia_SQL.executeUpdate(Sentencia);
+    }
+
+    public static void Modificar_Rol(String tabla, String dni, String rol) throws SQLException {
+        String Sentencia = "UPDATE " + tabla + " SET ID_ROL = '" + rol + "' WHERE DNI_USUARIO = '" + dni + "';";
+        Sentencia_SQL.executeUpdate(Sentencia);
+    }
+
+    public static void Borrar_Usuario(String tabla, String dni) throws SQLException {
+        String Sentencia = "DELETE FROM " + tabla + " WHERE DNI_USUARIO = '" + dni + "';";
+        Sentencia_SQL.executeUpdate(Sentencia);
+    }
+
+    public static void Insertar_Rol(String tabla, Usuario usu) throws SQLException {
+        String Sentencia = "INSERT INTO " + tabla
+                + " VALUES ("
+                + Integer.parseInt(usu.getRol()) + ",'"
+                + usu.getDni() + "')";
+        Sentencia_SQL.execute(Sentencia);
+    }
+
+    public static void Desactivar_Usuario(String tabla, String dni) throws SQLException {
+        String Sentencia = "UPDATE " + tabla + " SET ACTIVO = '0' WHERE DNI_USUARIO = '" + dni + "';";
+        Sentencia_SQL.executeUpdate(Sentencia);
+    }
+
+    public static void Activar_Usuario(String tabla, String dni) throws SQLException {
+        String Sentencia = "UPDATE " + tabla + " SET ACTIVO = '1' WHERE DNI_USUARIO = '" + dni + "';";
+        Sentencia_SQL.executeUpdate(Sentencia);
+    }
+
+    public static void Modificar_UsuarioFoto(String tabla, Usuario usuario) {
+        String sql = "UPDATE usuarios SET FOTO = ?, FOTO_DEFECTO =? WHERE DNI_USUARIO =?;";
+        PreparedStatement ps = null;
+
+        try {
+            ps = ConexionEstatica.Conex.prepareStatement(sql);
+            ps.setBytes(1, usuario.getFoto());
+            ps.setString(2, null);
+            ps.setString(3, usuario.getDni());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("Error de SQL: " + ex.getMessage());
+        } catch (Exception ex) {
+            System.out.println("Error general: " + ex.getMessage());
+        } finally {
+            try {
+                ps.close();
+            } catch (Exception ex) {
+                System.out.println("Error general: " + ex.getMessage());
+            }
+        }
+    }
 }

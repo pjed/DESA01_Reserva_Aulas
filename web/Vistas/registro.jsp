@@ -35,7 +35,7 @@
                 Nombre de Usuario: <input type="text" name="usuario" placeholder="Nombre de usuario"><br><br>
                 Contraseña: <input type="password" name="password" placeholder="Contraseña"><br><br>
                 Vuelve a introducir tu Contraseña: <input type="password" name="password_rep" placeholder="Contraseña"><br><br>
-                Captcha: <input type="text" disabled name="captcha" value="<%out.print(generarCaptcha());%>"><br><br>
+                Captcha: <input type="text" readonly name="captcha" value="<%out.print(generarCaptcha());%>"><br><br>
                 Introduce el captcha: <input type="text" name="valCaptcha" placeholder="Introduce el captcha"><br><br>
             </div>
             <input type="submit" name="boton" value="Registrar">

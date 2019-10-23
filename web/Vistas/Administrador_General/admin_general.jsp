@@ -12,7 +12,6 @@
         <title>Panel Administrador General</title>
     </head>
     <body>
-        <h1>Panel Administrador General</h1>
         <form name="frmAdminGeneral" action="../../controlador.jsp" method="POST">
             <input type="submit" name="boton" value="Gestionar Usuarios">
             <input type="submit" name="boton" value="Ver Bitacora">

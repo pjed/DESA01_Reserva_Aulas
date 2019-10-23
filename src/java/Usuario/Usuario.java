@@ -5,8 +5,10 @@
  */
 package Usuario;
 
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
-
+import java.util.Base64;
 
 /**
  *
@@ -19,29 +21,92 @@ public class Usuario {
     private String password;
     private String password_rep;
     private String activo;
-    private String foto;
+    private byte[] foto; //Foto en formato binario, será la leída del formulario.
+    private Blob fotoBlob; //Formato en formato BLOB será la leída de MySQL.
+    private String foto_defecto;
     private String correo;
     private int edad;
     private String nombre;
     private String apellidos;
+    private String rol;
+    private String descRol;
     private ArrayList<Rol> roles;
-    
-    public Usuario() {
-        
-    }
 
-    public Usuario(String dni, String nombre_usuario, String password, String activo, String foto, String correo, String nombre, String apellidos, int edad, String password_rep) {
+    public Usuario() {
+
+    }
+    
+    public Usuario(String dni, String nombre_usuario, String password, String activo, byte[] foto, Blob fotoBlob, String fotoDefecto, String correo, String nombre, String apellidos, int edad, String password_rep) {
         this.dni = dni;
         this.nombre_usuario = nombre_usuario;
         this.password = password;
         this.activo = activo;
         this.foto = foto;
+        this.fotoBlob = fotoBlob;
+        this.foto_defecto = fotoDefecto;
         this.correo = correo;
         this.edad = edad;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.password_rep = password_rep;
         this.roles = null;
+    }
+
+    public Usuario(String dni, String nombre_usuario, String password, String activo, byte[] foto, Blob fotoBlob, String fotoDefecto, String correo, String nombre, String apellidos, int edad, String password_rep, String rol) {
+        this.dni = dni;
+        this.nombre_usuario = nombre_usuario;
+        this.password = password;
+        this.activo = activo;
+        this.foto = foto;
+        this.fotoBlob = fotoBlob;
+        this.foto_defecto = fotoDefecto;
+        this.correo = correo;
+        this.edad = edad;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.password_rep = password_rep;
+        this.rol = rol;
+    }
+
+    public Usuario(String dni, String correo, String nombre, String apellidos, int edad, String activo, String idRol, String descRol) {
+        this.dni = dni;
+        this.correo = correo;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.edad = edad;
+        this.activo = activo;
+        this.rol = idRol;
+        this.descRol = descRol;
+        this.nombre_usuario = null;
+        this.password = null;
+        this.foto = null;
+        this.fotoBlob = null;
+        this.roles = null;
+        this.password_rep = null;
+    }
+
+    public String getFoto_defecto() {
+        return foto_defecto;
+    }
+
+    public void setFoto_defecto(String foto_defecto) {
+        this.foto_defecto = foto_defecto;
+    }
+    
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public String getDescRol() {
+        return descRol;
+    }
+
+    public void setDescRol(String descRol) {
+        this.descRol = descRol;
     }
 
     public ArrayList<Rol> getRoles() {
@@ -52,15 +117,34 @@ public class Usuario {
         this.roles = roles;
     }
 
-
-    public String getFoto() {
+    public byte[] getFoto() {
         return foto;
     }
 
-    public void setFoto(String foto) {
+    public void setFoto(byte[] foto) {
         this.foto = foto;
     }
-    
+
+    public Blob getFotoBlob() {
+        return fotoBlob;
+    }
+
+    public void setFotoBlob(Blob fotoBlob) {
+        this.fotoBlob = fotoBlob;
+    }
+
+    public String getFotoimgString() {
+        String image = null;
+        try {
+            byte[] imageBytes = this.fotoBlob.getBytes(1, (int) this.fotoBlob.length());
+            String encodedImage = Base64.getEncoder().encodeToString(imageBytes);
+            image = "data:image/jpg;base64," + encodedImage;
+
+        } catch (SQLException ex) {
+        }
+        return image;
+    }
+
     public String getDni() {
         return dni;
     }
@@ -135,6 +219,6 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" + "dni=" + dni + ", nombre_usuario=" + nombre_usuario + ", password=" + password + ", password_rep=" + password_rep + ", activo=" + activo + ", foto=" + foto + ", correo=" + correo + ", edad=" + edad + ", nombre=" + nombre + ", apellidos=" + apellidos + ", roles=" + roles + '}';
+        return "Usuario{" + "dni=" + dni + ", nombre_usuario=" + nombre_usuario + ", password=" + password + ", password_rep=" + password_rep + ", activo=" + activo + ", foto=" + foto + ", fotoBlob=" + fotoBlob + ", correo=" + correo + ", edad=" + edad + ", nombre=" + nombre + ", apellidos=" + apellidos + ", rol=" + rol + ", descRol=" + descRol + ", roles=" + roles + '}';
     }
 }

@@ -25,12 +25,21 @@
             Usuario usuarioLog = null;
             if (session.getAttribute("usuarioLog") != null) {
                 usuarioLog = (Usuario) session.getAttribute("usuarioLog");
+                if (usuarioLog.getFotoBlob() == null) {
+                    Conexion.ConexionEstatica.abrirBD();
+                    usuarioLog = Conexion.ConexionEstatica.existeUsuario(usuarioLog.getNombre_usuario(), usuarioLog.getPassword());
+                    Conexion.ConexionEstatica.cerrarBD();
+                }
             }
         %>
         <form name="frmRolEntrar" action="../controlador.jsp" method="POST">
             <div id="panelUsuarioRol" style="width: 25%; text-align: center;">
                 <%
-                    out.print("<img src='../" + usuarioLog.getFoto() + "'><br><br>");
+                    if (usuarioLog.getFoto_defecto() != null) {
+                        out.print("<img src='../" + usuarioLog.getFoto_defecto() + "'><br><br>");
+                    } else {
+                        out.print("<img src='" + usuarioLog.getFotoimgString() + "'><br><br>");
+                    }
                 %>
                 <fieldset>
                     <legend style="text-align: center;">Datos de Usuario</legend><br>
@@ -43,12 +52,15 @@
                         <input type="password" name="passwordNueva" placeholder="Escribe la nueva contraseña"><br>
                         <input type="submit" name="boton" value="Cambiar"><br><br>
                     </div>
-                    <div id="cambiarFoto">
-                        <input type="file" id="foto" name="foto" accept="image/jpeg"><br><br>
-                        <input type="submit" id="boton" name="boton" value="Subir Foto">
-                    </div>
-                </fieldset>
             </div>
         </form>
-    </body>
+        </br>
+        <form name="frmFoto" action="../subefichero.jsp" enctype="multipart/form-data" method="POST">
+            <div id="cambiarFoto">Foto de perfil:
+                <input type="file" name="fichero"><br><br>
+                <input type="submit" value="Subir fichero">
+            </div>
+        </form>
+    </fieldset>
+</body>
 </html>

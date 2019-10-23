@@ -86,6 +86,8 @@
                 <input type="submit" name="boton" value="Ver cuadrante"><br><br>
                 <%
                     if (reservas != null) {
+                        if (reservas.size() > 0) {
+
                 %>
                 <%out.print(fecha);%><br><br>
                 AULA&nbsp;<%out.print(aul);%><br><br>
@@ -110,6 +112,7 @@
                     %>
                 </table>
                 <%
+                        }
                     }
                 %>
             </div><br>

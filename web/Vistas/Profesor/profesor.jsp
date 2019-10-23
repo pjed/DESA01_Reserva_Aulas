@@ -118,6 +118,7 @@
                 <input type="submit" name="boton" value="Ver reservas profesor"><br>
                 <%
                     if (reservasProfesor != null) {
+                        if (reservasProfesor.size() > 0) {
                 %>
                 <h2>Reservas del profesor</h2>
                 <table id="reservasProfe">
@@ -142,6 +143,7 @@
                     %>
                 </table>
                 <%
+                        }
                     }
                 %>
 

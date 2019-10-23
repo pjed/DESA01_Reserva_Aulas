@@ -6,6 +6,7 @@
 package Bitacora;
 
 import Costantes.Constantes;
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Date;
@@ -20,7 +21,7 @@ import java.util.GregorianCalendar;
  */
 public class Bitacora {
 
-    public static void escribirBitacora(String m) {
+    public static void escribirBitacora(String accion, String correoUsuario, String rol) {
         Calendar fecha = new GregorianCalendar();
         int ano = fecha.get(Calendar.YEAR);
         int mes = fecha.get(Calendar.MONTH);
@@ -29,10 +30,10 @@ public class Bitacora {
         int minuto = fecha.get(Calendar.MINUTE);
 
         FileWriter fw = null;
-        System.out.println(m);
         try {
             fw = new FileWriter(Constantes.ficheroBitacora, true);
-            fw.write("" + dia + "/" + mes + "/" + ano + "    " + hora + ":" + minuto + " ****** " + m + "\r\n");
+            
+            fw.write(accion + " ----------------- " + ano + "-" + mes + "-" + dia + " " + hora + ":" + minuto + " ----------------- " + correoUsuario + " ----------------- " + rol + "\r\n");
             fw.close();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
