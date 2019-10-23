@@ -18,6 +18,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Panel Profesor</title>
+        <script type="text/javascript" src="../../js/jquery-3.4.1.min.js"></script>
     </head>
     <body>
         <%
@@ -66,7 +67,7 @@
                     ELIGE FECHA<input type="date" name="fecha" id="fecha"><br><br>
                     ELIGE AULA
                     <select id="aula" name="aula">
-                        <%                        for (int idx = 0; idx < aulas.size(); idx++) {
+                        <%  for (int idx = 0; idx < aulas.size(); idx++) {
                                 Aula aula = (Aula) aulas.get(idx);
                         %>
                         <%
