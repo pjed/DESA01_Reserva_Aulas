@@ -19,8 +19,26 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Panel Profesor</title>
         <script type="text/javascript" src="../../js/jquery-3.4.1.min.js"></script>
+        <script>
+            var fechaGlobal = null;
+            $(document).ready(function () {
+                $("#fecha").blur(function (event) {
+                    event.preventDefault();
+                    fechaGlobal = $("#fecha").val();
+                });
+            });
+
+
+            function getDate() {
+                if (fechaGlobal === null) {
+                    var f = new Date();
+                    var fecha = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate();
+                    $("#fecha").val(fecha);
+                }
+            }
+        </script>
     </head>
-    <body>
+    <body onload="getDate()">
         <%
             Usuario usuarioLog = null;
             ArrayList<Aula> aulas = null;

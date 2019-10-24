@@ -162,6 +162,24 @@ public class ConexionEstatica {
         }
         return usuarios;
     }
+    
+    public static ArrayList<Franja> obtenerFranjas() {
+        ArrayList<Franja> franjas = new ArrayList<Franja>();
+        Franja franja;
+        try {
+            String sentencia = "SELECT * FROM franjas;";
+            ConexionEstatica.Conj_Registros = ConexionEstatica.Sentencia_SQL.executeQuery(sentencia);
+            while (Conj_Registros.next()) {
+                int idFranja = Conj_Registros.getInt("ID_FRANJA");
+                String inicio = Conj_Registros.getString("INICIO");
+                String fin = Conj_Registros.getString("FIN");
+                franja = new Franja(String.valueOf(idFranja), inicio, fin);
+                franjas.add(franja);
+            }
+        } catch (SQLException ex) {
+        }
+        return franjas;
+    }
 
     public static ArrayList<ReservaAula> obtenerReservasFecha(String fecha, String aula) {
         ArrayList<ReservaAula> reservas = new ArrayList<ReservaAula>();
