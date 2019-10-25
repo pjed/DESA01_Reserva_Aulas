@@ -13,6 +13,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Gestión de Usuarios</title>
+        <script type="text/javascript" src="../../js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="../../js/reserva.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../css/reserva.css">
     </head>
     <body>
         <%
@@ -24,15 +27,15 @@
         <form name="frmGestUsuario" action="../../controlador.jsp" method="POST">
             <table>
                 <thead>
-                <th>DNI</th>
-                <th>CORREO</th>
-                <th>NOMBRE</th>
-                <th>APELLIDO</th>
-                <th>EDAD</th>
-                <th>ACTIVO</th>
+                <th>Dni</th>
+                <th>Correo</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Edad</th>
+                <th>Activo</th>
                 <th></th>
-                <th>ID_ROL</th>
-                <th>DESC_ROL</th>
+                <th>IdRol</th>
+                <th>Descripción Rol</th>
                 </thead>
                 <%
                     if (usuarios.size() > 0) {
@@ -41,12 +44,12 @@
                 %>
                 <form name="frmUsuario" action="../../controlador.jsp" method="POST">
                     <tr>
-                        <td><input type="text" name="dni" readonly value="<%out.print(usu.getDni());%>" style="width: 75px;"></td>
-                        <td><input type="text" name="correo" readonly value="<%out.print(usu.getCorreo());%>" style="width: 200px;"></td>
-                        <td><input type="text" name="nombre" value="<%out.print(usu.getNombre());%>"></td>
-                        <td><input type="text" name="apellidos" value="<%out.print(usu.getApellidos());%>"></td>
-                        <td><input type="number" name="edad" value="<%out.print(usu.getEdad());%>"></td>
-                        <td><input type="text" name="activo" readonly value="<%out.print(usu.getActivo());%>" style="width: 50px;"></td>
+                        <td><input type="text" name="dni" readonly class="readonly" value="<%out.print(usu.getDni());%>" style="width: 75px;"></td>
+                        <td><input type="text" name="correo" id="correo" value="<%out.print(usu.getCorreo());%>" style="width: 200px;" readonly class="readonly"></td>
+                        <td><input type="text" name="nombre" id="nombre" value="<%out.print(usu.getNombre());%>" required><span class="validity"></span></td>
+                        <td><input type="text" name="apellidos" id="apellidos" value="<%out.print(usu.getApellidos());%>" required><span class="validity"></span></td>
+                        <td><input type="number" name="edad" id="edad" value="<%out.print(usu.getEdad());%>" required><span class="validity"></span></td>
+                        <td><input type="text" name="activo" readonly class="readonly" value="<%out.print(usu.getActivo());%>" style="width: 50px;"></td>
                             <%
                                 if (usu.getActivo().equals("0")) {
                             %>
@@ -58,9 +61,9 @@
                             <%
                                 }
                             %>
-                        <td><input type="text" name="idRol" value="<%out.print(usu.getRol());%>" style="width: 50px;"></td>
-                        <td><input type="text" name="descRol" readonly  value="<%out.print(usu.getDescRol());%>"></td>
-                        <td><input type="submit" name="boton" value="                     Modificar Usuario" style="background:url(../../img/modify.png) no-repeat; border: none; background-position: center; width: 25px; height: 25px;"></td>
+                        <td><input type="text" name="idRol" class="readonly" readonly value="<%out.print(usu.getRol());%>" style="width: 50px;"></td>
+                        <td><input type="text" name="descRol" readonly class="readonly"  value="<%out.print(usu.getDescRol());%>"></td>
+                        <td><input type="submit" name="boton" value="                     Modificar Usuario" onclick="return validaCamposGestUsuarios()" style="background:url(../../img/modify.png) no-repeat; border: none; background-position: center; width: 25px; height: 25px;"></td>
                         <td><input type="submit" name="boton" value="                     Eliminar Usuario" style="background:url(../../img/delete.png) no-repeat; border: none; background-position: center; width: 25px; height: 25px;"></td>
                     </tr>
                 </form>

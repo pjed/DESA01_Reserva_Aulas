@@ -19,6 +19,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Panel Profesor</title>
         <script type="text/javascript" src="../../js/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../css/reserva.css">
         <script>
             var fechaGlobal = null;
             $(document).ready(function () {
@@ -113,7 +114,7 @@
                 AULA&nbsp;<%out.print(aul);%><br><br>
                 <table id="aulas">
                     <thead>
-                    <th>ID</th><th>HORA COMIENZO</th><th>HORA FINAL</th><th>RESERVADO</th>
+                    <th>Id Reserva</th><th>Hora Comienzo</th><th>Hora final</th><th>Reservado</th>
                     </thead>
                     <%
                         for (int idx = 0; idx < reservas.size(); idx++) {
@@ -121,9 +122,9 @@
                     %>
                     <form name="frmCRUD" action="../../controlador.jsp" method="POST">
                         <tr>
-                            <td><input type="text" name="franja" value="<%out.print(ra.getIdFranja());%>"></td>
-                            <td><input type="text" name="inicio" value="<%out.print(ra.getInicio());%>"></td>
-                            <td><input type="text" name="fin" value="<%out.print(ra.getFin());%>"></td>
+                            <td><input type="text" name="franja" value="<%out.print(ra.getIdFranja());%>" readonly class="readonly"></td>
+                            <td><input type="text" name="inicio" value="<%out.print(ra.getInicio());%>" readonly class="readonly"></td>
+                            <td><input type="text" name="fin" value="<%out.print(ra.getFin());%>" readonly class="readonly"></td>
                             <td><input type="submit" name="boton" value="<%out.print(ra.getEstadoReserva());%>"></td>
                         </tr>
                     </form>
@@ -142,7 +143,7 @@
                 <h2>Reservas del profesor</h2>
                 <table id="reservasProfe">
                     <thead>
-                    <th>ID_RESERVA</th><th>FECHA</th><th>NUMERO AULA</th>
+                    <th>Id Reserva</th><th>Fecha</th><th>Número Aula</th>
                     </thead>
                     <%
                         for (int idx = 0; idx < reservasProfesor.size(); idx++) {
@@ -150,9 +151,9 @@
                     %>
                     <form name="frmCRUD" action="../../controlador.jsp" method="POST">
                         <tr>
-                            <td><input type="text" name="idReserva" readonly value="<%out.print(rp.getIdReserva());%>"></td>
-                            <td><input type="text" name="fecha" readonly value="<%out.print(rp.getFecha());%>"> </td>
-                            <td><input type="text" name="codAula" readonly value="<%out.print(rp.getCodAula());%>"> </td>
+                            <td><input type="text" name="idReserva"  value="<%out.print(rp.getIdReserva());%>" readonly class="readonly"></td>
+                            <td><input type="text" name="fecha" readonly value="<%out.print(rp.getFecha());%>" readonly class="readonly"> </td>
+                            <td><input type="text" name="codAula" readonly value="<%out.print(rp.getCodAula());%>" readonly class="readonly"> </td>
                             <td><input type="submit" name="boton" value="Ver Detalles"></td>
                             <td><input type="submit" name="boton" value="Eliminar Reserva"></td>
                         </tr>
@@ -173,14 +174,14 @@
                     <h2>Detalle cita seleccionada</h2>
                     <table>
                         <thead>
-                        <th>NUMERO AULA</th><th>DESC AULA</th><th>FECHA RESERVA</th><th>INICIO</th><th>FIN</th>
+                        <th>Número Aula</th><th>Descripción Aula</th><th>Fecha Reserva</th><th>Inicio</th><th>Fin</th>
                         </thead>
                         <tr>
-                            <td><input type="text" name="aula" readonly value="<%out.print(rd.getCodAula());%>"></td>
-                            <td><input type="text" name="descAulaDetalle" readonly value="<%out.print(rd.getDescAula());%>"></td>
-                            <td><input type="text" name="fechaDetalle" readonly value="<%out.print(rd.getFecha());%>"></td>
-                            <td><input type="text" name="inicioDetalle" readonly value="<%out.print(rd.getInicio());%>"></td>
-                            <td><input type="text" name="finDetalle" readonly value="<%out.print(rd.getFin());%>"></td>
+                            <td><input type="text" name="aula" readonly value="<%out.print(rd.getCodAula());%>" readonly class="readonly"></td>
+                            <td><input type="text" name="descAulaDetalle" readonly value="<%out.print(rd.getDescAula());%>" readonly class="readonly"></td>
+                            <td><input type="text" name="fechaDetalle" readonly value="<%out.print(rd.getFecha());%>" readonly class="readonly"></td>
+                            <td><input type="text" name="inicioDetalle" readonly value="<%out.print(rd.getInicio());%>" readonly class="readonly"></td>
+                            <td><input type="text" name="finDetalle" readonly value="<%out.print(rd.getFin());%>" readonly class="readonly"></td>
                         </tr>
                     </table>
                     <%

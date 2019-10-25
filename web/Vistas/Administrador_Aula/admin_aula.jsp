@@ -18,6 +18,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Panel Administrador de Aula</title>
+        <script type="text/javascript" src="../../js/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../css/reserva.css">
     </head>
     <body>
         <%
@@ -93,7 +95,7 @@
                 AULA&nbsp;<%out.print(aul);%><br><br>
                 <table id="aulas">
                     <thead>
-                    <th>ID</th><th>HORA COMIENZO</th><th>HORA FINAL</th><th>RESERVADO</th>
+                    <th>Id Reserva</th><th>Hora Comienzo</th><th>Hora final</th><th>Reservado</th>
                     </thead>
                     <%
                         for (int idx = 0; idx < reservas.size(); idx++) {
@@ -101,9 +103,9 @@
                     %>
                     <form name="frmCRUD" action="../../controlador.jsp" method="POST">
                         <tr>
-                            <td><input type="text" name="franja" value="<%out.print(ra.getIdFranja());%>"></td>
-                            <td><input type="text" name="inicio" value="<%out.print(ra.getInicio());%>"></td>
-                            <td><input type="text" name="fin" value="<%out.print(ra.getFin());%>"></td>
+                            <td><input type="text" name="franja" value="<%out.print(ra.getIdFranja());%>" readonly class="readonly"></td>
+                            <td><input type="text" name="inicio" value="<%out.print(ra.getInicio());%>" readonly class="readonly"></td>
+                            <td><input type="text" name="fin" value="<%out.print(ra.getFin());%>" readonly class="readonly"></td>
                             <td><input type="submit" name="boton" value="<%out.print(ra.getEstadoReserva());%>"></td>
                         </tr>
                     </form>
