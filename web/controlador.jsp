@@ -24,7 +24,7 @@
     String rolSeleccionado = "";
     Usuario u;
     session.setMaxInactiveInterval(60);
-
+//
     //Comprobar si existe el fichero bitacora.txt
     File file = new File("bitacora.txt");
     if (!file.exists()) {
@@ -36,10 +36,10 @@
         fw.write(cabecera);
         fw.close();
     }
-    
+
     if (request.getParameter("boton") != null) {
         boton = (String) request.getParameter("boton");
-        
+
         if (boton.equals("Registrar")) {
             String dni_usuario = request.getParameter("dni");
             String usuario = request.getParameter("usuario");
@@ -375,7 +375,7 @@
                     rol = "Ver perfil";
                     Bitacora.Bitacora.escribirBitacora("El usuario ha modificado su perfil ", usuario.getCorreo(), rol);
                 }
-                
+
                 Bitacora.Bitacora.escribirBitacora("El usuario ha cerrado sesión", usuario.getCorreo(), rol);
                 session.invalidate();
                 response.sendRedirect("index.jsp");
@@ -475,16 +475,16 @@
             session.setAttribute("rolSeleccionado", "4");
             response.sendRedirect("Vistas/perfil_usuario.jsp");
         }
-        
+
         if (boton.equals("Reservado")) {
-            if(session.getAttribute("rolSeleccionado") != null){
+            if (session.getAttribute("rolSeleccionado") != null) {
                 rolSeleccionado = (String) session.getAttribute("rolSeleccionado");
-                
-                if(rolSeleccionado.equals("2")){
+
+                if (rolSeleccionado.equals("2")) {
                     response.sendRedirect("Vistas/Administrador_Aula/admin_aula.jsp");
                 }
-                
-                if(rolSeleccionado.equals("3")){
+
+                if (rolSeleccionado.equals("3")) {
                     response.sendRedirect("Vistas/Profesor/profesor.jsp");
                 }
             }
