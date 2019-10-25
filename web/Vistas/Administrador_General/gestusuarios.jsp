@@ -50,11 +50,11 @@
                             <%
                                 if (usu.getActivo().equals("0")) {
                             %>
-                        <td><input type="submit" name="boton" value="Activar Usuario" style="width: 150px;"></td>
+                        <td><input type="submit" name="boton" value="                     Activar Usuario" style="background:url(../../img/activar.png) no-repeat; border: none; background-size: contain; background-position: center; width: 25px; height: 25px;"></td>
                             <%
                             } else {
                             %>
-                        <td><input type="submit" name="boton" value="Desactivar Usuario" style="width: 150px;"></td>
+                        <td><input type="submit" name="boton" value="                     Desactivar Usuario" style="background:url(../../img/desactivar.jpeg) no-repeat; border: none; background-size: contain; background-position: center; width: 25px; height: 25px;"></td>
                             <%
                                 }
                             %>

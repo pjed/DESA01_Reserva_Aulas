@@ -13,6 +13,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Gestión de Franjas Horarias</title>
+        <script type="text/javascript" src="../../js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="../../js/reserva.js"></script>
     </head>
     <body>
         <%
@@ -41,8 +43,8 @@
                     <form>
                         <tr>
                             <td><input type="text" readonly name="idFranja" value="<%out.print(al.getIdFranja());%>"></td>
-                            <td><input type="text" name="inicio" value="<%out.print(al.getInicio());%>"></td>
-                            <td><input type="text" name="fin" value="<%out.print(al.getFin());%>"></td>
+                            <td><input type="text" name="inicio" id="inicio" value="<%out.print(al.getInicio());%>"></td>
+                            <td><input type="text" name="fin" id="fin" value="<%out.print(al.getFin());%>"></td>
                             <td><input type="submit" name="boton" value="                     Modificar Franja" style="background:url(../../img/modify.png) no-repeat; border: none; background-position: center; width: 25px; height: 25px;"></td>
                         </tr>
                     </form>
@@ -52,7 +54,7 @@
                     %>
                 </form>
             </table>
-            <input type="submit" name="boton" value="Volver">
+            <input type="submit" name="boton" onclick="return validaCamposFranja()" value="Volver">
         </form>
     </body>
 </html>

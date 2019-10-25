@@ -29,14 +29,17 @@
     File file = new File("bitacora.txt");
     if (!file.exists()) {
         FileWriter fw = new FileWriter(file);
-        String cabecera = "Acción ----------------------------------- Fecha y hora de la acción ------- Correo del usuario ---------------------- Rol" + "\r\n";
+        String cabecera = "Acción &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "
+                + "Fecha y hora de la acción &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "
+                + "Correo del usuario &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "
+                + "Rol" + "\r\n";
         fw.write(cabecera);
         fw.close();
     }
-
+    
     if (request.getParameter("boton") != null) {
         boton = (String) request.getParameter("boton");
-
+        
         if (boton.equals("Registrar")) {
             String dni_usuario = request.getParameter("dni");
             String usuario = request.getParameter("usuario");
@@ -453,14 +456,14 @@
             response.sendRedirect("Vistas/Administrador_General/gestusuarios.jsp");
         }
 
-        if (boton.equals("Activar Usuario")) {
+        if (boton.equals("                     Activar Usuario")) {
             String dni = (String) request.getParameter("dni");
             ConexionEstatica.abrirBD();
             ConexionEstatica.Activar_Usuario("usuarios", dni);
             ConexionEstatica.cerrarBD();
             response.sendRedirect("Vistas/Administrador_General/gestusuarios.jsp");
         }
-        if (boton.equals("Desactivar Usuario")) {
+        if (boton.equals("                     Desactivar Usuario")) {
             String dni = (String) request.getParameter("dni");
             ConexionEstatica.abrirBD();
             ConexionEstatica.Desactivar_Usuario("usuarios", dni);
@@ -471,6 +474,20 @@
         if (boton.equals("Ver Perfil")) {
             session.setAttribute("rolSeleccionado", "4");
             response.sendRedirect("Vistas/perfil_usuario.jsp");
+        }
+        
+        if (boton.equals("Reservado")) {
+            if(session.getAttribute("rolSeleccionado") != null){
+                rolSeleccionado = (String) session.getAttribute("rolSeleccionado");
+                
+                if(rolSeleccionado.equals("2")){
+                    response.sendRedirect("Vistas/Administrador_Aula/admin_aula.jsp");
+                }
+                
+                if(rolSeleccionado.equals("3")){
+                    response.sendRedirect("Vistas/Profesor/profesor.jsp");
+                }
+            }
         }
     }
 %>

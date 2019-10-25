@@ -16,6 +16,7 @@
             Usuario: <input type="text" name="usuario" placeholder="Usuario"><br><br>
             Contraseña: <input type="password" name="password" placeholder="Contraseña"><br><br>
             <input type="submit" name="boton" value="Login"><br><br>
+            <span id="val_log" name="val_log" style="color: red;"></span><br><br>
             <a href="Vistas/registro.jsp" id="registro">Registrar</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="Vistas/olvido.jsp" id="olvido">He olvidado la contraseña</a><br><br>
         </form>

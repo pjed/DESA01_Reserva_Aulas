@@ -4,6 +4,7 @@
     Author     : daw201
 --%>
 
+<%@page import="java.util.Scanner"%>
 <%@page import="java.io.BufferedReader"%>
 <%@page import="java.io.File"%>
 <%@page import="java.io.FileReader"%>
@@ -17,17 +18,11 @@
     <body>
         <h3>Contenido del archivo Bitácora</h3>
         <%
-            String texto = "";
-
-            FileReader fr = new FileReader("bitacora.txt");
-
-            int valor = fr.read();
-            while (valor != -1) {
-                out.print((char) valor);
-                valor = fr.read();
+            Scanner sc = new Scanner(new File("bitacora.txt"));
+            while (sc.hasNextLine()) {
+                out.println(sc.nextLine()+"<br>");
             }
-            //Cerramos el stream
-            fr.close();
+            sc.close();
         %>
     </body>
 </html>

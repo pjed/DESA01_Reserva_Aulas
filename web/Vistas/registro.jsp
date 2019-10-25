@@ -10,6 +10,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registro de Usuario</title>
+        <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="../js/reserva.js"></script>
     </head>
     <body>
         <%!
@@ -25,20 +27,38 @@
                 return pass = new String(conjunto);
             }
         %>
-        <form name="frmRegistro" action="../controlador.jsp" method="POST">
+        <form name="frmRegistro" id="registro" action="../controlador.jsp" method="POST">
             <div id="registro">
-                DNI: <input type="text" name="dni" placeholder="00000000Z"><br><br>
-                Nombre: <input type="text" name="nombre" placeholder="Nombre"><br><br>
-                Apellidos: <input type="text" name="apellidos" placeholder="Apellidos"><br><br>
-                Correo: <input type="text" name="email" placeholder="tucorreo@loquesea.xxx"><br><br>
-                Edad: <input type="text" name="edad" placeholder="Edad"><br><br>
-                Nombre de Usuario: <input type="text" name="usuario" placeholder="Nombre de usuario"><br><br>
-                Contraseña: <input type="password" name="password" placeholder="Contraseña"><br><br>
-                Vuelve a introducir tu Contraseña: <input type="password" name="password_rep" placeholder="Contraseña"><br><br>
-                Captcha: <input type="text" readonly name="captcha" value="<%out.print(generarCaptcha());%>"><br><br>
-                Introduce el captcha: <input type="text" name="valCaptcha" placeholder="Introduce el captcha"><br><br>
+                <span>DNI: </span><input type="text" id="dni" name="dni" placeholder="00000000Z"><br>
+                <span id="val_dni" style="color: red;"></span><br><br>
+                    
+                <span>Nombre: </span><input type="text" id="nombre" name="nombre" placeholder="Nombre"><br>
+                <span id="val_nombre" style="color: red;"></span><br><br>
+                    
+                <span>Apellidos: </span><input type="text" id="apellidos" name="apellidos" placeholder="Apellidos"><br>
+                <span id="val_apellidos" style="color: red;"></span><br><br>
+                    
+                <span>Email: </span><input type="text" id="email" name="email" placeholder="tucorreo@loquesea.xxx"><br>
+                <span id="val_email" style="color: red;"></span><br><br>
+                    
+                <span>Edad: </span><input type="text" name="edad" id="edad" placeholder="Edad"><br>
+                <span id="val_edad" style="color: red;"></span><br><br>
+                    
+                <span>Nombre de Usuario: </span><input type="text" name="usuario" id="usuario" placeholder="Nombre de usuario"><br>
+                <span id="val_usuario" style="color: red;"></span><br><br>
+                    
+                <span>Contraseña: </span><input type="password" name="password" id="password" placeholder="Contraseña"><br>
+                <span id="val_password" style="color: red;"></span><br><br>
+                    
+                <span>Vuelve a introducir tu Contraseña: </span><input type="password" id="password_rep" name="password_rep" placeholder="Contraseña"><br>
+                <span id="val_password_rep" style="color: red;"></span><br><br>
+                    
+                <span>Captcha: </span><input type="text" readonly name="captcha" value="<%out.print(generarCaptcha());%>"><br><br>
+                <span>Introduce el captcha: </span><input type="text" name="valCaptcha" id="valCaptcha" placeholder="Introduce el captcha"><br>
+                <span id="val_valCaptcha" style="color: red;"></span><br><br>
+                    
             </div>
-            <input type="submit" name="boton" value="Registrar">
+                <input type="submit" onclick="return validaCampos()" name="boton" value="Registrar">
         </form>
     </body>
 </html>
