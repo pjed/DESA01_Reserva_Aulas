@@ -73,7 +73,7 @@ function validaCamposAulaAdd() {
             inputnuevoCod.removeClass("valid").addClass("invalid");
         } else {
             compruebanuevoCod = true;
-        inputInicio.removeClass("invalid").addClass("valid");
+            inputInicio.removeClass("invalid").addClass("valid");
         }
     } else {
         compruebanuevoCod = false;
@@ -148,38 +148,27 @@ function validaCamposAula() {
 
 //**************** Validaciones Pantalla Franjas *******************
 function validaCamposFranjas() {
+
+    var idFranja = $("#idFranja").val();
+
     var inicio = $("#inicio").val();
     var inputInicio = $("#inicio");
-
+    //TODO PROBLEMAS PARA ACCEDER POR JQUERY LA FILA SELECCIONADA DE LA FRANJA EN JSP FUNCIONA EL METODO MODIFICAR PERFECTAMENTE
     var fin = $("#fin").val();
     var inputFin = $("#fin");
 
 
-    var compruebaInicio = false;
-    var compruebaFin = false;
-    var compruebaFranjas = false;
+    var compruebaInicioMenorFin = false;
 
-    if (inicio !== "") {
-        compruebaInicio = true;
-        inputInicio.removeClass("invalid").addClass("valid");
+    if (inicio < fin) {
+        compruebaInicioMenorFin = true;
     } else {
-        compruebaInicio = false;
         inputInicio.removeClass("valid").addClass("invalid");
-    }
-
-    if (fin === "") {
-        compruebaFin = false;
         inputFin.removeClass("valid").addClass("invalid");
-    } else {
-        inputInicio.removeClass("invalid").addClass("valid");
-        compruebaFin = true;
+        alert("La hora de inicio no puede ser mayor a la fin, por favor revisalo");
     }
 
-    if (compruebaInicio && compruebaFin) {
-        compruebaFranjas = true;
-    }
-
-    if (compruebaFranjas) {
+    if (compruebaInicioMenorFin) {
         return true;
     } else {
         return false;
@@ -198,7 +187,7 @@ function validaCamposGestUsuarios() {
 
     var correo = $("#correo").val();
     var inputCorreo = $("#correo");
-    
+
     var edad = $("#edad").val();
     var inputEdad = $("#edad");
 
@@ -223,7 +212,7 @@ function validaCamposGestUsuarios() {
         inputApellidos.removeClass("invalid").addClass("valid");
         compruebaApellidos = true;
     }
-    
+
     if (correo === "") {
         compruebaCorreo = false;
         inputCorreo.removeClass("valid").addClass("invalid");
@@ -231,7 +220,7 @@ function validaCamposGestUsuarios() {
         inputCorreo.removeClass("invalid").addClass("valid");
         compruebaCorreo = true;
     }
-    
+
     if (edad !== "") {
         if (isNaN(edad)) {
             compruebaEdad = false;

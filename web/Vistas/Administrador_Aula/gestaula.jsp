@@ -50,7 +50,7 @@
                 %>
                 <form name="frmNuevaAula" action="../../controlador.jsp" method="POST">
                     <tr>
-                        <td><input type="text"  id="nuevoCod" name="nuevoCod" value="" required><span class="validity"></span></td>
+                        <td><input type="number" min="0" max="999" placeholder="000" id="nuevoCod" name="nuevoCod" value="" required><span class="validity"></span></td>
                         <td><input type="text"  id="nuevaDesc" name="nuevaDesc" value="" required><span class="validity"></span></td>
                         <td><input type="submit" name="boton" value="                     Add Aula" id="addAula" onclick="return validaCamposAulaAdd()" value="                     Add Aula" style="background:url(../../img/add.png) no-repeat; border: none; background-position: center; width: 25px; height: 25px;"></td>
                         <td></td>

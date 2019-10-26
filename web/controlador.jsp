@@ -24,14 +24,14 @@
     String rolSeleccionado = "";
     Usuario u;
     session.setMaxInactiveInterval(60);
-    
+
     //Comprobar si existe el fichero bitacora.txt
     File file = new File("bitacora.txt");
     if (!file.exists()) {
         FileWriter fw = new FileWriter(file);
-        BufferedWriter bufferedWriter =
-                new BufferedWriter(fw);
-        
+        BufferedWriter bufferedWriter
+                = new BufferedWriter(fw);
+
         String cabecera = "Acción &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "
                 + "Fecha y hora de la acción &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "
                 + "Correo del usuario &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "
@@ -134,7 +134,7 @@
                     existeUsuario.setRoles(roles);
 
                     session.setAttribute("usuarioLog", existeUsuario);
-
+                    session.setAttribute("rolSeleccionado", "5");
                     response.sendRedirect("Vistas/rol_entrar.jsp");
                 } else {
                     //Email.send("noreply@gestionaulas.com", "Password1234", existeUsuario.getCorreo(), "Activación de la contraseña", "En el transcurso de 1 hora se le activará la cuenta de usuario para poder acceder al sistema. Gracias. No intente responder a este correo.");
@@ -359,25 +359,33 @@
 
         if (boton.equals("Cerrar sesion")) {
             Usuario usuario = null;
+            String rol = "";
             if (session.getAttribute("usuarioLog") != null) {
                 usuario = (Usuario) session.getAttribute("usuarioLog");
-                rolSeleccionado = (String) session.getAttribute("rolSeleccionado");
-                String rol = "";
 
-                if (rolSeleccionado.equals("1")) {
-                    rol = "Adm General";
-                }
+                if (session.getAttribute("rolSeleccionado") != null) {
+                    rolSeleccionado = (String) session.getAttribute("rolSeleccionado");
 
-                if (rolSeleccionado.equals("2")) {
-                    rol = "Adm Aula";
-                }
+                    if (rolSeleccionado.equals("1")) {
+                        rol = "Adm General";
+                    }
 
-                if (rolSeleccionado.equals("3")) {
-                    rol = "Profesor";
-                }
-                if (rolSeleccionado.equals("4")) {
-                    rol = "Ver perfil";
-                    Bitacora.Bitacora.escribirBitacora("El usuario ha modificado su perfil ", usuario.getCorreo(), rol);
+                    if (rolSeleccionado.equals("2")) {
+                        rol = "Adm Aula";
+                    }
+
+                    if (rolSeleccionado.equals("3")) {
+                        rol = "Profesor";
+                    }
+                    if (rolSeleccionado.equals("4")) {
+                        rol = "Ver perfil";
+                        Bitacora.Bitacora.escribirBitacora("El usuario ha modificado su perfil ", usuario.getCorreo(), rol);
+                    }
+
+                    if (rolSeleccionado.equals("5")) {
+                        rol = "Selecciona perfil";
+                        Bitacora.Bitacora.escribirBitacora("El usuario selecciona perfil ", usuario.getCorreo(), rol);
+                    }
                 }
 
                 Bitacora.Bitacora.escribirBitacora("El usuario ha cerrado sesión", usuario.getCorreo(), rol);
