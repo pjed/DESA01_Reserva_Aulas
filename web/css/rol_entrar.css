@@ -9,19 +9,19 @@ and open the template in the editor.
 */
 
 .container {
-display: grid;
-grid-template-columns: repeat(12, 1fr);
-grid-template-rows: 1fr;
-grid-column-gap: 0px;
-grid-row-gap: 0px;
+    display: block;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
 }
 
 .header {
-  background-color: #5E8EBD;
-  grid-column-start: 1;
-  grid-column-end: 12;
-  height: 110px;
-  text-align: center;
+    background-color: #5E8EBD;
+    grid-column-start: 1;
+    grid-column-end: 12;
+    height: 110px;
+    text-align: center;
 }
 
 .gestiona_aulas{
@@ -65,20 +65,19 @@ grid-row-gap: 0px;
 }
 
 .content {
-  background-color: #7dc7db;
-  grid-column-start: 1;
-  grid-column-end: 12;
-  height: 100%;
-  width: 100%;
+    grid-column-start: 1;
+    grid-column-end: 12;
+    height: 600px;
+    width: 100%;
 }
 
 .footer {
-  background-color: #C4C4C4;
-  grid-column-start: 1;
-  grid-column-end: 12;
-  text-align: center;
-  padding-top: 25px;
-  padding-bottom: 25px; 
+    background-color: #C4C4C4;
+    grid-column-start: 1;
+    grid-column-end: 12;
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 25px; 
 }
 
 .centrado-porcentual {
@@ -90,29 +89,68 @@ grid-row-gap: 0px;
 }
 
 ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: grey;
+}
+
+input[type=submit] 
+{
+    color: blue;
+    padding:5px 15px; 
+    background: lightblue; 
+    border:1px solid blue;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+    width: 200px;
+    height: 50px;
+}
+input[type=submit] :active
+{
+    background-color: yellow;
+} 
+
+input[type=submit]:hover
+{
+    background-color: yellow;
 }
 
 li {
-  float: left;
+    float: left;
 }
 
 li a {
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
 
 li a:hover {
-  background-color: #111;
+    background-color: #111;
 }
 
 .active {
-  background-color: red;
+    background-color: red;
+}
+
+body{
+
+    background-color: #eee; 
+}
+
+table th , table td{
+    text-align: center;
+}
+
+table tr:nth-child(even){
+    background-color: #BEF2F5
+}
+
+.pagination li:hover{
+    cursor: pointer;
 }

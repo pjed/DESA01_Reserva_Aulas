@@ -17,9 +17,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Ver Bitácora Web</title>
         <link rel="stylesheet" type="text/css" href="../../css/reserva.css">
+        <link rel="stylesheet" type="text/css" href="../../css/rol_entrar.css">
+        <link rel="stylesheet" type="text/css" href="../../css/paginacion.css">
+        <script type="text/javascript" src="../../js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="../../js/paginacion.js"></script>
     </head>
     <body>
-        <h3>Contenido del archivo Bitácora</h3>
         <%
             ArrayList<Bitacora> logBitacora = null;
 
@@ -33,32 +36,50 @@
             sc.close();*/
 
         %>
-        <form name="frmBitacoraLog" action="../../controlador.jsp" method="POST">
-            <table>
-                <thead>
-                <th class="span_header">Acción</th>
-                <th class="span_header">Fecha y Hora de la acción</th>
-                <th class="span_header">Correo</th>
-                <th class="span_header">Rol</th>
-                </thead>
+        <main class="container">
+            <section class="header">
+                <div class="logo_pagina"></div>
+                <div><span class="gestiona_aulas">Gestión de Aulas</span></div>
+                <div></div>
+            </section>
+            <section class="content">
+                <nav>
+                    <ul>
+                        <form name="frmGestUsuarios" action="../../controlador.jsp">
+                            <li><input type="submit" name="boton" value="Gestionar Usuarios"  class="active"></li>
+                        </form>
+                        <form name="frmBitacora" action="../../controlador.jsp">
+                            <li><input type="submit" name="boton" value="Ver Bitacora"></li>
+                        </form>
+                    </ul>
+                </nav>
+                <h1 style="text-align: center; font-size: 14pt;">Ver Bitácora</h1>
+                <table id="tblData">
+                    <thead>
+                    <th class="span_header">Acción</th>
+                    <th class="span_header">Fecha y Hora de la acción</th>
+                    <th class="span_header">Correo</th>
+                    <th class="span_header">Rol</th>
+                    </thead>
 
-                <%                
-                    if(logBitacora.size()>0){
-                    for (int idx = 0; idx < logBitacora.size(); idx++) {
-                        Bitacora bi = logBitacora.get(idx);
+                    <%                    if (logBitacora.size() > 0) {
+                            for (int idx = 0; idx < logBitacora.size(); idx++) {
+                                Bitacora bi = logBitacora.get(idx);
 
-                %>
-                <tr>
-                    <td><span ><%out.print(bi.getAccion());%></span></td>
-                    <td class="td_span_bitacora"><span><%out.print(bi.getFyh());%></span></td>
-                    <td class="td_span_bitacora"><span><%out.print(bi.getCorreo());%></span></td>
-                    <td><span><%out.print(bi.getRol());%></span></td>
-                </tr>
-                <%                    }
-                        
-                    }
-                %>
-            </table>
-        </form>
+                    %>
+                    <tr>
+                        <td><span ><%out.print(bi.getAccion());%></span></td>
+                        <td class="td_span_bitacora"><span><%out.print(bi.getFyh());%></span></td>
+                        <td class="td_span_bitacora"><span><%out.print(bi.getCorreo());%></span></td>
+                        <td><span><%out.print(bi.getRol());%></span></td>
+                    </tr>
+                    <%                    }
+
+                        }
+                    %>
+                </table>
+            </section>
+            <section class="footer"><span>Desa01 - Reserva de Aulas &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CIFP Virgen de Gracia</span></section>
+        </main>
     </body>
 </html>

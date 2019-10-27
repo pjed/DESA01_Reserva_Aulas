@@ -40,7 +40,6 @@
         bufferedWriter.newLine();
         bufferedWriter.close();
     }*/
-
     if (request.getParameter("boton") != null) {
         boton = (String) request.getParameter("boton");
 
@@ -195,40 +194,10 @@
         }
 
         //Pantalla seleccionar rol entrar para entrar como seleccione el usuario
-        if (boton.equals("Entrar")) {
-            rolSeleccionado = request.getParameter("selectPerfil");
-
-            if (rolSeleccionado.equals("1")) {
-                session.setAttribute("rolSeleccionado", rolSeleccionado);
-                response.sendRedirect("Vistas/Administrador_General/admin_general.jsp");
-            }
-
-            if (rolSeleccionado.equals("2")) {
-                session.setAttribute("rolSeleccionado", rolSeleccionado);
-                //Obtenemos todas las aulas de la BBDD
-                ConexionEstatica.abrirBD();
-                ArrayList<Aula> aulas = ConexionEstatica.obtenerAulas();
-                ConexionEstatica.cerrarBD();
-
-                //guardamos las aulas en sesion
-                session.setAttribute("aulas", aulas);
-                response.sendRedirect("Vistas/Administrador_Aula/admin_aula.jsp");
-            }
-
-            if (rolSeleccionado.equals("3")) {
-                session.setAttribute("rolSeleccionado", rolSeleccionado);
-
-                //Obtenemos todas las aulas de la BBDD
-                ConexionEstatica.abrirBD();
-                ArrayList<Aula> aulas = ConexionEstatica.obtenerAulas();
-                ConexionEstatica.cerrarBD();
-
-                //guardamos las aulas en sesion
-                session.setAttribute("aulas", aulas);
-
-                response.sendRedirect("Vistas/Profesor/profesor.jsp");
-            }
-
+        if (boton.equals("Administrador General")) {
+            rolSeleccionado = "1";
+            session.setAttribute("rolSeleccionado", rolSeleccionado);
+            
             if (session.getAttribute("usuarioLog") != null) {
                 u = (Usuario) session.getAttribute("usuarioLog");
 
@@ -249,6 +218,81 @@
 
                 Bitacora.Bitacora.escribirBitacora("Inicia sesión el usuario", u.getCorreo(), rol);
             }
+            
+            response.sendRedirect("Vistas/Administrador_General/admin_general.jsp");
+        }
+
+        if (boton.equals("Administrador Aula")) {
+            rolSeleccionado = "2";
+            session.setAttribute("rolSeleccionado", rolSeleccionado);
+
+            //Obtenemos todas las aulas de la BBDD
+            ConexionEstatica.abrirBD();
+            ArrayList<Aula> aulas = ConexionEstatica.obtenerAulas();
+            ConexionEstatica.cerrarBD();
+
+            //guardamos las aulas en sesion
+            session.setAttribute("aulas", aulas);
+            
+            if (session.getAttribute("usuarioLog") != null) {
+                u = (Usuario) session.getAttribute("usuarioLog");
+
+                rolSeleccionado = (String) session.getAttribute("rolSeleccionado");
+                String rol = "";
+
+                if (rolSeleccionado.equals("1")) {
+                    rol = "Adm General";
+                }
+
+                if (rolSeleccionado.equals("2")) {
+                    rol = "Adm Aula";
+                }
+
+                if (rolSeleccionado.equals("3")) {
+                    rol = "Profesor";
+                }
+
+                Bitacora.Bitacora.escribirBitacora("Inicia sesión el usuario", u.getCorreo(), rol);
+            }
+            
+
+            response.sendRedirect("Vistas/Administrador_Aula/admin_aula.jsp");
+        }
+
+        if (boton.equals("Profesor")) {
+            rolSeleccionado = "3";
+            session.setAttribute("rolSeleccionado", rolSeleccionado);
+
+            //Obtenemos todas las aulas de la BBDD
+            ConexionEstatica.abrirBD();
+            ArrayList<Aula> aulas = ConexionEstatica.obtenerAulas();
+            ConexionEstatica.cerrarBD();
+            
+            if (session.getAttribute("usuarioLog") != null) {
+                u = (Usuario) session.getAttribute("usuarioLog");
+
+                rolSeleccionado = (String) session.getAttribute("rolSeleccionado");
+                String rol = "";
+
+                if (rolSeleccionado.equals("1")) {
+                    rol = "Adm General";
+                }
+
+                if (rolSeleccionado.equals("2")) {
+                    rol = "Adm Aula";
+                }
+
+                if (rolSeleccionado.equals("3")) {
+                    rol = "Profesor";
+                }
+
+                Bitacora.Bitacora.escribirBitacora("Inicia sesión el usuario", u.getCorreo(), rol);
+            }
+
+            //guardamos las aulas en sesion
+            session.setAttribute("aulas", aulas);
+
+            response.sendRedirect("Vistas/Profesor/profesor.jsp");
         }
 
         if (boton.equals("Ver cuadrante")) {
