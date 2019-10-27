@@ -23,10 +23,10 @@
     String boton;
     String rolSeleccionado = "";
     Usuario u;
-    session.setMaxInactiveInterval(60);
+    //session.setMaxInactiveInterval(60);
 
     //Comprobar si existe el fichero bitacora.txt
-    File file = new File("bitacora.txt");
+    /*File file = new File("bitacora.txt");
     if (!file.exists()) {
         FileWriter fw = new FileWriter(file);
         BufferedWriter bufferedWriter
@@ -39,7 +39,7 @@
         bufferedWriter.write(cabecera);
         bufferedWriter.newLine();
         bufferedWriter.close();
-    }
+    }*/
 
     if (request.getParameter("boton") != null) {
         boton = (String) request.getParameter("boton");

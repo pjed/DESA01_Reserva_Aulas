@@ -1,0 +1,118 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26-oct-2019, 11:24:32
+    Author     : DarkS
+*/
+
+.container {
+display: grid;
+grid-template-columns: repeat(12, 1fr);
+grid-template-rows: 1fr;
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+}
+
+.header {
+  background-color: #5E8EBD;
+  grid-column-start: 1;
+  grid-column-end: 12;
+  height: 110px;
+  text-align: center;
+}
+
+.gestiona_aulas{
+    color: white; 
+    font-size: 32pt;
+}
+
+.marco_fuera{
+    background-color: #5E8EBD; 
+    padding: 25px; 
+    width: 400px; 
+    height: 250px;
+}
+
+.marco_login{
+    text-align: center; 
+    padding: 20px; 
+    background-color: white; 
+    width: 350px; 
+    height: 200px;
+}
+
+.logo_fondo{
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background-image: url('../img/fondo_index.jpg'); 
+    background-repeat: no-repeat;  
+    background-size: 100% 100%; 
+    width: 100%; 
+    height: 550px; 
+}
+
+.logo_pagina{
+    float: left; 
+    background: url(../img/logo.jpg) no-repeat; 
+    background-size: 170px 100px; 
+    margin: 5px; 
+    width: 170px; 
+    height: 100px; 
+}
+
+.content {
+  background-color: #7dc7db;
+  grid-column-start: 1;
+  grid-column-end: 12;
+  height: 100%;
+  width: 100%;
+}
+
+.footer {
+  background-color: #C4C4C4;
+  grid-column-start: 1;
+  grid-column-end: 12;
+  text-align: center;
+  padding-top: 25px;
+  padding-bottom: 25px; 
+}
+
+.centrado-porcentual {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+.active {
+  background-color: red;
+}

@@ -33,7 +33,7 @@
             }
         %>
         <form name="frmRolEntrar" action="../controlador.jsp" method="POST">
-            <div id="panelUsuarioRol" style="width: 25%; text-align: center;">
+            <div id="panelUsuarioRol" style="width: 30%; text-align: center;">
                 <%
                     if (usuarioLog.getFoto_defecto() != null) {
                         out.print("<img src='../" + usuarioLog.getFoto_defecto() + "'><br><br>");
@@ -48,8 +48,8 @@
                     %>
                     <br><br>
                     <div id="cambiarPassword">
-                        Nueva Contraseña:<br>
-                        <input type="password" name="passwordNueva" placeholder="Escribe la nueva contraseña"><br>
+                        Nueva Contraseña:
+                        <input type="password" name="passwordNueva" placeholder="Escribe la nueva contraseña"><br><br>
                         <input type="submit" name="boton" value="Cambiar"><br><br>
                     </div>
             </div>

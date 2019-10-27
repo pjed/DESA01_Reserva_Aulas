@@ -23,7 +23,7 @@
 ////
 //});
 
-//**************** Funciones General *******************
+//**************** Funciones General *******************/
 function comprobarNif(dni) {
     var numero;
     var letr;
@@ -53,7 +53,7 @@ function comprobarNif(dni) {
 
 
 
-//**************** Validaciones Pantalla Aula *******************
+//**************** Validaciones Pantalla Aula *******************/
 function validaCamposAulaAdd() {
 
     var nuevoCod = $("#nuevoCod").val();
@@ -146,7 +146,7 @@ function validaCamposAula() {
 
 
 
-//**************** Validaciones Pantalla Franjas *******************
+//**************** Validaciones Pantalla Franjas *******************/
 function validaCamposFranjas() {
 
     var idFranja = $("#idFranja").val();
@@ -177,7 +177,7 @@ function validaCamposFranjas() {
 /////////////////////////////////////////////////////////////////////
 
 
-//**************** Validaciones Pantalla Usuarios *******************
+//**************** Validaciones Pantalla Usuarios *******************/
 function validaCamposGestUsuarios() {
     var nombre = $("#nombre").val();
     var inputNombre = $("#nombre");
@@ -247,7 +247,7 @@ function validaCamposGestUsuarios() {
 /////////////////////////////////////////////////////////////////////
 
 
-//**************** Validaciones Pantalla Registro *******************
+//**************** Validaciones Pantalla Registro *******************/
 function validaCampos() {
 
     var camposCorrectos = false;
@@ -360,3 +360,34 @@ function validaCampos() {
     }
 }
 /////////////////////////////////////////////////////////////////////
+
+
+
+////**************** Validaciones Pantalla Registro *******************/
+//function compruebaLogin(){
+//    var compruebaLogin = true;
+//    var compruebaPassword = true;
+//    var usuario = $("#usuario").val();
+//    var password = $("#password").val();
+//    
+//    var val_log = $("#val_log").val();
+//    
+//    if(usuario === ""){
+//        compruebaLogin = false;
+//        val_log.val("")
+//        $("#val_log").text("El campo usuario es obligatorio");
+//    }
+//    
+//    if(password === ""){
+//        compruebaPassword = false;
+//        val_log.val("")
+//        $("#val_log").text("El campo password es obligatorio");
+//    }
+//    
+//    if(compruebaLogin && compruebaPassword){
+//        return true;
+//    }else{
+//        return false;
+//    }
+//}
+///////////////////////////////////////////////////////////////////////

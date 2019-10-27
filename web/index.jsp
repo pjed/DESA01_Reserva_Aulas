@@ -10,15 +10,33 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>DESA01_Reserva_Aulas</title>
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="js/reserva.js">
     </head>
     <body>
-        <form name="frmLogin" action="controlador.jsp" method="POST">
-            Usuario: <input type="text" name="usuario" placeholder="Usuario"><br><br>
-            Contraseña: <input type="password" name="password" placeholder="Contraseña"><br><br>
-            <input type="submit" name="boton" value="Login"><br><br>
-            <span id="val_log" name="val_log" style="color: red;"></span><br><br>
-            <a href="Vistas/registro.jsp" id="registro">Registrar</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="Vistas/olvido.jsp" id="olvido">He olvidado la contraseña</a><br><br>
-        </form>
+        <main class="container">
+            <section class="header">
+                <div class="logo_pagina"></div>
+                <div><span class="gestiona_aulas">Gestión de Aulas</span></div>
+            </section>
+            <section class="content">
+                <div class="logo_fondo">
+                    <div class="marco_fuera">
+                        <div class="marco_login">
+                            <form name="frmLogin" action="controlador.jsp" method="POST">
+                                Usuario: <input type="text" name="usuario" id="usuario" placeholder="Usuario"><br><br>
+                                Contraseña: <input type="password" name="password" id="password" placeholder="Contraseña"><br><br>
+                                <!--<input type="submit" name="boton" value="Login" onclick="return compruebaLogin()"><br><br>-->
+                                <input type="submit" name="boton" value="Login"><br><br>
+                                <span id="val_log" name="val_log" id="val_log" style="color: red;"></span><br>
+                                <a href="Vistas/registro.jsp" id="registro">Registrar</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="Vistas/olvido.jsp" id="olvido">He olvidado la contraseña</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="footer"><span>Desa01 - Reserva de Aulas &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CIFP Virgen de Gracia</span></section>
+        </main>
     </body>
 </html>

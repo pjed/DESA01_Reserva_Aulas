@@ -2,6 +2,7 @@ package Conexion;
 
 import Costantes.Constantes;
 import Usuario.Aula;
+import Usuario.Bitacora;
 import Usuario.Franja;
 import Usuario.Reserva;
 import Usuario.ReservaAula;
@@ -102,6 +103,27 @@ public class ConexionEstatica {
         } catch (SQLException ex) {
         }
         return roles;
+    }
+    
+    public static ArrayList<Bitacora> obtenerBitacora() {
+        ArrayList<Bitacora> logBitacora = new ArrayList<Bitacora>();
+        try {
+            String sentencia = "SELECT * FROM bitacora";
+
+            PreparedStatement sentenciaPreparada = ConexionEstatica.Conex.prepareStatement(sentencia);
+
+            ConexionEstatica.Conj_Registros = sentenciaPreparada.executeQuery();
+            while (Conj_Registros.next()) {
+                logBitacora.add(new Bitacora(String.valueOf(Conj_Registros.getInt("ID_LOG")), Conj_Registros.getString("ACCION"), Conj_Registros.getString("FYH"), Conj_Registros.getString("CORREO"), Conj_Registros.getString("ROL")));
+                //usuario = new Usuario(Conj_Registros.getString("USUARIO"), Conj_Registros.getString("NOMBRE"), Conj_Registros.getInt("EDAD"), Conj_Registros.getString("CLAVE"), Conj_Registros.getString("CLAVE_REP"), Conj_Registros.getString("TIPO"), Conj_Registros.getInt("NUM_SESION"));
+//                System.out.println("----");
+//                b.mostrarInfo();
+//                System.out.println("----");
+                //usuarios.add(usuario);
+            }
+        } catch (SQLException ex) {
+        }
+        return logBitacora;
     }
 
     public static ReservaDetalle obtenerDetallesReserva(String idReserva) {
@@ -335,6 +357,32 @@ public class ConexionEstatica {
             }
         }
     }
+    //----------------------------------------------------------
+    public static void Insertar_Bitacora(String tabla, String accion, String f_log, String correo, String rol) throws SQLException {
+        String sql = "INSERT INTO "+tabla+" (ID_LOG, ACCION, FYH, CORREO, ROL) VALUES (null,?,?,?,?);";
+
+        PreparedStatement ps = null;
+
+        try {
+            ps = ConexionEstatica.Conex.prepareStatement(sql);
+            ps.setString(1, accion);
+            ps.setString(2, f_log);
+            ps.setString(3, correo);
+            ps.setString(4, rol);
+
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("Error de SQL: " + ex.getMessage());
+        } catch (Exception ex) {
+            System.out.println("Error general: " + ex.getMessage());
+        } finally {
+            try {
+                ps.close();
+            } catch (Exception ex) {
+                System.out.println("Error general: " + ex.getMessage());
+            }
+        }
+    }    
 
     public static void Insertar_Reserva(String tabla, String dniUsuario, String idFranja, String codAula, String fecha) throws SQLException {
         String Sentencia = "INSERT INTO " + tabla
