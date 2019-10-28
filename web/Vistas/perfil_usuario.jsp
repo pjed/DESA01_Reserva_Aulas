@@ -19,6 +19,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Rol entrar</title>
+        <link rel="stylesheet" type="text/css" href="../css/rol_entrar.css">
     </head>
     <body>
         <%
@@ -33,34 +34,33 @@
             }
         %>
         <form name="frmRolEntrar" action="../controlador.jsp" method="POST">
-            <div id="panelUsuarioRol" style="width: 30%; text-align: center;">
+            <div style="display: block; float: left;">
                 <%
                     if (usuarioLog.getFoto_defecto() != null) {
-                        out.print("<img src='../" + usuarioLog.getFoto_defecto() + "'><br><br>");
+                        out.print("<img style='border-radius: 25px 25px' src='../" + usuarioLog.getFoto_defecto() + "' width='100px' height='100px'><br><br>");
                     } else {
-                        out.print("<img src='" + usuarioLog.getFotoimgString() + "'><br><br>");
+                        out.print("<img style='border-radius: 25px 25px' src='" + usuarioLog.getFotoimgString() + "' width='100px' height='100px'><br><br>");
                     }
                 %>
-                <fieldset>
-                    <legend style="text-align: center;">Datos de Usuario</legend><br>
-                    <%
-                        out.print("Nombre: <span>" + usuarioLog.getNombre() + "</span>");
-                    %>
-                    <br><br>
-                    <div id="cambiarPassword">
-                        Nueva Contraseña:
-                        <input type="password" name="passwordNueva" placeholder="Escribe la nueva contraseña"><br><br>
-                        <input type="submit" name="boton" value="Cambiar"><br><br>
-                    </div>
+            </div>
+            <div style="width: 200px; display: float; float: left; margin-left: 15px;">
+                <%
+                    out.print("Nombre: <span>" + usuarioLog.getNombre() + "</span>");
+                %>
+                <br>
+                <br>
+                Nueva Contraseña:
+                <input type="password" name="passwordNueva" placeholder="Escribe la nueva contraseña"><br>
+                <input type="submit" name="boton" value="Cambiar">
             </div>
         </form>
-        </br>
-        <form name="frmFoto" action="../subefichero.jsp" enctype="multipart/form-data" method="POST">
-            <div id="cambiarFoto">Foto de perfil:
-                <input type="file" name="fichero"><br><br>
-                <input type="submit" value="Subir fichero">
-            </div>
-        </form>
-    </fieldset>
-</body>
+        <div style="width: 100px; display: float; float: left; margin-left: 15px;">
+            <form name="frmFoto" action="../subefichero.jsp" enctype="multipart/form-data" method="POST">
+                <div id="cambiarFoto">Foto de perfil:
+                    <input type="file" name="fichero"><br><br><br>
+                    <input type="submit" value="Subir fichero">
+                </div>
+            </form>
+        </div>
+    </body>
 </html>

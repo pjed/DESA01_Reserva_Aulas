@@ -20,6 +20,7 @@
         <title>Panel Administrador de Aula</title>
         <script type="text/javascript" src="../../js/jquery-3.4.1.min.js"></script>
         <link rel="stylesheet" type="text/css" href="../../css/reserva.css">
+        <link rel="stylesheet" type="text/css" href="../../css/rol_entrar.css">
     </head>
     <body>
         <%
@@ -61,65 +62,74 @@
             }
         %>
 
-        <form name="frmAdminGeneral" action="../../controlador.jsp" method="POST">
-            <div id="aulas_tabla">
-                ELIGE FECHA<input type="date" name="fecha" id="fecha"><br><br>
-                ELIGE AULA
-                <select id="aula" name="aula">
-                    <%                        for (int idx = 0; idx < aulas.size(); idx++) {
-                            Aula aula = (Aula) aulas.get(idx);
-                    %>
-                    <%
-                        if (idx == 0) {
-                    %>
-                    <option selected value="<%out.print(aula.getCodAula());%>"><%out.print(aula.getCodAula());%></option>
-                    <%
-                    } else {
-                    %>
-                    <option value="<%out.print(aula.getCodAula());%>"><%out.print(aula.getCodAula());%></option>
-                    <%
-                        }
-                    %>
-                    <%
-                        }
-                    %>
-                </select>
-                <br><br>
-                <input type="submit" name="boton" value="Ver cuadrante"><br><br>
-                <%
-                    if (reservas != null) {
-                        if (reservas.size() > 0) {
+        <main class="container">
+            <section class="header">
+                <a href="../../index.jsp"><div class="logo_pagina"></div></a>
+                <iframe class="perfil" src="../perfil_usuario.jsp" scrolling="no"></iframe>
+            </section>
+            <section class="content" id="contenido">
+                <form name="frmAdminGeneral" action="../../controlador.jsp" method="POST">
+                    <div id="aulas_tabla">
+                        ELIGE FECHA<input type="date" name="fecha" id="fecha"><br><br>
+                        ELIGE AULA
+                        <select id="aula" name="aula">
+                            <%                        for (int idx = 0; idx < aulas.size(); idx++) {
+                                    Aula aula = (Aula) aulas.get(idx);
+                            %>
+                            <%
+                                if (idx == 0) {
+                            %>
+                            <option selected value="<%out.print(aula.getCodAula());%>"><%out.print(aula.getCodAula());%></option>
+                            <%
+                            } else {
+                            %>
+                            <option value="<%out.print(aula.getCodAula());%>"><%out.print(aula.getCodAula());%></option>
+                            <%
+                                }
+                            %>
+                            <%
+                                }
+                            %>
+                        </select>
+                        <br><br>
+                        <input type="submit" name="boton" value="Ver cuadrante"><br><br>
+                        <%
+                            if (reservas != null) {
+                                if (reservas.size() > 0) {
 
-                %>
-                <%out.print(fecha);%><br><br>
-                AULA&nbsp;<%out.print(aul);%><br><br>
-                <table id="aulas">
-                    <thead>
-                    <th>Id Reserva</th><th>Hora Comienzo</th><th>Hora final</th><th>Reservado</th>
-                    </thead>
-                    <%
-                        for (int idx = 0; idx < reservas.size(); idx++) {
-                            ReservaAula ra = reservas.get(idx);
-                    %>
-                    <form name="frmCRUD" action="../../controlador.jsp" method="POST">
-                        <tr>
-                            <td><input type="text" name="franja" value="<%out.print(ra.getIdFranja());%>" readonly class="readonly"></td>
-                            <td><input type="text" name="inicio" value="<%out.print(ra.getInicio());%>" readonly class="readonly"></td>
-                            <td><input type="text" name="fin" value="<%out.print(ra.getFin());%>" readonly class="readonly"></td>
-                            <td><input type="submit" name="boton" value="<%out.print(ra.getEstadoReserva());%>"></td>
-                        </tr>
-                    </form>
-                    <%
-                        }
-                    %>
-                </table>
-                <%
-                        }
-                    }
-                %>
-            </div><br>
-            <input type="submit" name="boton" value="Gestionar aula"><br><br>
-            <input type="submit" name="boton" value="Gestionar franjas horarias">
-        </form>
+                        %>
+                        <%out.print(fecha);%><br><br>
+                        AULA&nbsp;<%out.print(aul);%><br><br>
+                        <table id="aulas">
+                            <thead>
+                            <th>Id Reserva</th><th>Hora Comienzo</th><th>Hora final</th><th>Reservado</th>
+                            </thead>
+                            <%
+                                for (int idx = 0; idx < reservas.size(); idx++) {
+                                    ReservaAula ra = reservas.get(idx);
+                            %>
+                            <form name="frmCRUD" action="../../controlador.jsp" method="POST">
+                                <tr>
+                                    <td><input type="text" name="franja" value="<%out.print(ra.getIdFranja());%>" readonly class="readonly"></td>
+                                    <td><input type="text" name="inicio" value="<%out.print(ra.getInicio());%>" readonly class="readonly"></td>
+                                    <td><input type="text" name="fin" value="<%out.print(ra.getFin());%>" readonly class="readonly"></td>
+                                    <td><input type="submit" name="boton" value="<%out.print(ra.getEstadoReserva());%>"></td>
+                                </tr>
+                            </form>
+                            <%
+                                }
+                            %>
+                        </table>
+                        <%
+                                }
+                            }
+                        %>
+                    </div><br>
+                    <input type="submit" name="boton" value="Gestionar aula"><br><br>
+                    <input type="submit" name="boton" value="Gestionar franjas horarias">
+                </form>
+            </section>
+            <section class="footer"><span>Desa01 - Reserva de Aulas &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CIFP Virgen de Gracia</span></section>
+        </main>
     </body>
 </html>

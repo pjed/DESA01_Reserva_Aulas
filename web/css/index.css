@@ -9,19 +9,43 @@ and open the template in the editor.
 */
 
 .container {
-display: grid;
-grid-template-columns: repeat(12, 1fr);
-grid-template-rows: 1fr;
-grid-column-gap: 0px;
-grid-row-gap: 0px;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(11, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url('../img/fondo_index.jpg'); 
+    background-repeat: no-repeat;  
+    background-size: 100% 100%; 
+}
+
+
+.header_logo {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    background-color: #5E8EBD;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    height: 130px;
+    text-align: center;
 }
 
 .header {
-  background-color: #5E8EBD;
-  grid-column-start: 1;
-  grid-column-end: 12;
-  height: 110px;
-  text-align: center;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    background-color: #5E8EBD;
+    grid-column-start: 3;
+    grid-column-end: 12;
+    height: 130px;
+    text-align: center;
 }
 
 .gestiona_aulas{
@@ -48,36 +72,32 @@ grid-row-gap: 0px;
     display: flex; 
     justify-content: center; 
     align-items: center; 
-    background-image: url('../img/fondo_index.jpg'); 
-    background-repeat: no-repeat;  
-    background-size: 100% 100%; 
     width: 100%; 
-    height: 550px; 
+    height: 100%;
 }
 
 .logo_pagina{
     float: left; 
     background: url(../img/logo.jpg) no-repeat; 
-    background-size: 170px 100px; 
+    background-size: 190px 120px; 
     margin: 5px; 
-    width: 170px; 
-    height: 100px; 
+    width: 190px; 
+    height: 120px; 
 }
 
 .content {
-  background-color: #7dc7db;
-  grid-column-start: 1;
-  grid-column-end: 12;
-  text-align: center;
-  height: 100%;
+    grid-column-start: 1;
+    grid-column-end: 12;
+    text-align: center;
+    height: 400px;
 }
 .footer {
-  background-color: #C4C4C4;
-  grid-column-start: 1;
-  grid-column-end: 12;
-  text-align: center;
-  padding-top: 25px;
-  padding-bottom: 25px; 
+    background-color: #C4C4C4;
+    grid-column-start: 1;
+    grid-column-end: 12;
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 25px; 
 }
 
 .centrado-porcentual {

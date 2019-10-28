@@ -188,7 +188,7 @@
             ConexionEstatica.Modificar_Contrasena("usuarios", passwordCod, usuarioLog);
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Contraseña cambiada correctamente');");
-            out.println("location='index.jsp';");
+            out.println("location='Vistas/perfil_usuario.jsp';");
             out.println("</script>");
             ConexionEstatica.cerrarBD();
         }

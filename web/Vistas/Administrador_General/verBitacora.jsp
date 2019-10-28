@@ -38,9 +38,8 @@
         %>
         <main class="container">
             <section class="header">
-                <div class="logo_pagina"></div>
-                <div><span class="gestiona_aulas">Gestión de Aulas</span></div>
-                <div></div>
+                <a href="../../index.jsp"><div class="logo_pagina"></div></a>
+                <iframe class="perfil" src="../perfil_usuario.jsp" scrolling="no"></iframe>
             </section>
             <section class="content">
                 <nav>

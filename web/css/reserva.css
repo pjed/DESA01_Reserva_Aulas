@@ -8,6 +8,12 @@ and open the template in the editor.
     Author     : daw201
 */
 
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
 .invalid{
     border: 3px solid red;
 }

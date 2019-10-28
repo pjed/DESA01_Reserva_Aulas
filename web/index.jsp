@@ -15,8 +15,10 @@
     </head>
     <body>
         <main class="container">
+            <section class="header_logo">
+                <a href="index.jsp"><div class="logo_pagina"></div></a>
+            </section>
             <section class="header">
-                <div class="logo_pagina"></div>
                 <div><span class="gestiona_aulas">Gestión de Aulas</span></div>
             </section>
             <section class="content">
