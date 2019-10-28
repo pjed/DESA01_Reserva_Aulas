@@ -80,14 +80,16 @@
             }
         %>
         <main class="container">
-            <section class="header">
+            <section class="header_logo">
                 <a href="../../index.jsp"><div class="logo_pagina"></div></a>
+            </section>
+            <section class="header">
                 <iframe class="perfil" src="../perfil_usuario.jsp" scrolling="no"></iframe>
             </section>
             <section class="content" id="contenido">
                 <form name="frmProfesor" action="../../controlador.jsp" method="POST">
                     <div id="profesor">
-                        <div id="aulas_tabla">
+                        <div id="aulas_tabla" style="margin: 0 auto; width: 50%; text-align: center;">
                             ELIGE FECHA<input type="date" name="fecha" id="fecha"><br><br>
                             ELIGE AULA
                             <select id="aula" name="aula">
@@ -115,9 +117,9 @@
                         <%
                             if (reservas != null) {
                         %>
-                        <%out.print(fecha);%><br><br>
-                        AULA&nbsp;<%out.print(aul);%><br><br>
-                        <table id="aulas">
+                        <h3 style="text-align: center;"><%out.print(fecha);%></h3>
+                        <h3 style="text-align: center;">AULA&nbsp;<%out.print(aul);%></h3>
+                        <table id="aulas" style="margin: 0 auto; width: 50%">
                             <thead>
                             <th>Id Reserva</th><th>Hora Comienzo</th><th>Hora final</th><th>Reservado</th>
                             </thead>
@@ -136,17 +138,20 @@
                             <%
                                 }
                             %>
+                            <tr>
+                                <td colspan="4"><input type="submit" name="boton" value="Ver reservas profesor"></td>
+                            </tr>
                         </table>
                         <%
                             }
                         %>
-                        <input type="submit" name="boton" value="Ver reservas profesor"><br>
+
                         <%
                             if (reservasProfesor != null) {
                                 if (reservasProfesor.size() > 0) {
                         %>
-                        <h2>Reservas del profesor</h2>
-                        <table id="reservasProfe">
+                        <h2 style="text-align: center;">Reservas del profesor</h2>
+                        <table id="reservasProfe" style="margin: 0 auto; width: 50%">
                             <thead>
                             <th>Id Reserva</th><th>Fecha</th><th>Número Aula</th>
                             </thead>
@@ -176,8 +181,8 @@
                             <%
                                 if (rd != null) {
                             %>
-                            <h2>Detalle cita seleccionada</h2>
-                            <table>
+                            <h2 style="text-align: center;">Detalle cita seleccionada</h2>
+                            <table style="margin: 0 auto; width: 50%">
                                 <thead>
                                 <th>Número Aula</th><th>Descripción Aula</th><th>Fecha Reserva</th><th>Inicio</th><th>Fin</th>
                                 </thead>
@@ -194,8 +199,8 @@
                             %>
                         </div>
                         <br>
-                        <input type="submit" name="boton" value="Volver">&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="submit" name="boton" value="Cerrar sesion">
+                            <input type="submit" name="boton" value="Volver">&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="submit" name="boton" value="Cerrar sesion">
                     </div>
                 </form>
             </section>

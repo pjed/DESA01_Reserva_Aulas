@@ -22,9 +22,13 @@ body{
     grid-row-gap: 0px;
 }
 
+
 .header {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
     background-color: #5E8EBD;
-    grid-column-start: 1;
+    grid-column-start: 3;
     grid-column-end: 12;
     height: 130px;
     text-align: center;
@@ -33,6 +37,10 @@ body{
 .gestiona_aulas{
     color: white; 
     font-size: 32pt;
+}
+
+span{
+    float: left;
 }
 
 .marco_fuera{
@@ -102,6 +110,19 @@ ul {
     background-color: grey;
 }
 
+
+input[type=button] 
+{
+    color: blue;
+    padding:5px 15px; 
+    background: lightblue; 
+    border:1px solid blue;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+    width: 200px;
+}
+
 input[type=submit] 
 {
     color: blue;
@@ -154,7 +175,6 @@ table th , table td{
 }
 
 table tr:nth-child(even){
-    background-color: #BEF2F5
 }
 
 .pagination li:hover{

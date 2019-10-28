@@ -45,18 +45,18 @@
             </div>
             <div style="width: 200px; display: float; float: left; margin-left: 15px;">
                 <%
-                    out.print("Nombre: <span>" + usuarioLog.getNombre() + "</span>");
+                    out.print("<span>Nombre: </span><span> " + usuarioLog.getNombre() + "</span>");
                 %>
                 <br>
                 <br>
-                Nueva Contraseña:
-                <input type="password" name="passwordNueva" placeholder="Escribe la nueva contraseña"><br>
+                <span>Escribe la nueva contraseña:</span>
+                <input type="password" name="passwordNueva" placeholder="Contraseña"><br>
                 <input type="submit" name="boton" value="Cambiar">
             </div>
         </form>
         <div style="width: 100px; display: float; float: left; margin-left: 15px;">
             <form name="frmFoto" action="../subefichero.jsp" enctype="multipart/form-data" method="POST">
-                <div id="cambiarFoto">Foto de perfil:
+                <div id="cambiarFoto"><span>Foto de perfil:</span>
                     <input type="file" name="fichero"><br><br><br>
                     <input type="submit" value="Subir fichero">
                 </div>

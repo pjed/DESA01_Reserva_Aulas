@@ -14,8 +14,10 @@
     </head>
     <body>
         <main class="container">
-            <section class="header">
+            <section class="header_logo">
                 <a href="../../index.jsp"><div class="logo_pagina"></div></a>
+            </section>
+            <section class="header">
                 <iframe class="perfil" src="../perfil_usuario.jsp" scrolling="no"></iframe>
             </section>
             <section class="content" id="contenido">

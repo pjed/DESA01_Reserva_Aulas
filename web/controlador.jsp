@@ -187,7 +187,7 @@
             ConexionEstatica.abrirBD();
             ConexionEstatica.Modificar_Contrasena("usuarios", passwordCod, usuarioLog);
             out.println("<script type=\"text/javascript\">");
-            out.println("alert('Contraseña cambiada correctamente');");
+            out.println("alert('Contraseña cambiada correctamente, la próxima vez que inicie tiene que usar la nueva contraseña');");
             out.println("location='Vistas/perfil_usuario.jsp';");
             out.println("</script>");
             ConexionEstatica.cerrarBD();

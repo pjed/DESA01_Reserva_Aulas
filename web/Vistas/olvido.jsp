@@ -14,13 +14,14 @@
     </head>
     <body>
         <main class="container">
-            <section class="header">
+            <section class="header_logo">
                 <a href="../index.jsp"><div class="logo_pagina"></div></a>
-                <div><span class="gestiona_aulas">Gestión de Aulas</span></div>
+            </section>
+            <section class="header">
+                <div><span class="gestiona_aulas">¿Has olvidado tu contraseña?</span></div>
                 <div></div>
             </section>
             <section class="content" id="contenido">
-                <h1>Olvida la contraseña</h1>
                 <div class="izda">
                     Usuario: <input type="text" name="usuario" placeholder="Usuario"><br><br>
                 Contraseña: <input type="password" name="password" placeholder="Contraseña"><br><br>
