@@ -22,6 +22,13 @@
     </head>
     <body>
         <%
+            session.setAttribute("rol", "1");
+            
+            Usuario existeUsuario;
+            if (session.getAttribute("usuarioLog") != null) {
+                existeUsuario = (Usuario) session.getAttribute("usuarioLog");
+                Bitacora.Bitacora.escribirBitacora("El usuario gestiona usuarios ", existeUsuario.getCorreo(), "Admin General");
+            }
             ArrayList<Usuario> usuarios = null;
             ConexionEstatica.abrirBD();
             usuarios = ConexionEstatica.obtenerUsuarios();
@@ -35,7 +42,7 @@
                 <iframe class="perfil" src="../perfil_usuario.jsp" scrolling="no"></iframe>
             </section>
             <section class="content" id="contenido">
-                <nav>
+                <!--<nav>
                     <ul>
                         <form name="frmGestUsuarios" action="../../controlador.jsp">
                             <li><input type="submit" name="boton" value="Gestionar Usuarios"  class="active"></li>
@@ -44,7 +51,7 @@
                             <li><input type="submit" name="boton" value="Ver Bitacora"></li>
                         </form>
                     </ul>
-                </nav>
+                </nav>-->
                 <form name="frmGestUsuario" id="usuarios" action="../../controlador.jsp" method="POST">
                     <h1 style="text-align: center; font-size: 14pt;">Gestión de Usuarios</h1>
                     <table id="tblData" role="table">
@@ -98,6 +105,9 @@
                         %>
                         </tbody>
                     </table>
+                        <br>
+                        <input type="submit" name="boton" value="Volver">&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="submit" name="boton" value="Cerrar sesion">
                 </form>
             </section>
             <section class="footer"><span>Desa01 - Reserva de Aulas &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CIFP Virgen de Gracia</span></section>

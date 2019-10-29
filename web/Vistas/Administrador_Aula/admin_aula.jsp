@@ -43,6 +43,7 @@
     </head>
     <body onload="getDate()">
         <%
+            session.setAttribute("rol", "2");
             Usuario usuarioLog = null;
             ArrayList<Aula> aulas = null;
             ArrayList<ReservaAula> reservas = null;
@@ -62,6 +63,8 @@
 
             if (session.getAttribute("usuarioLog") != null) {
                 usuarioLog = (Usuario) session.getAttribute("usuarioLog");
+                
+                Bitacora.Bitacora.escribirBitacora("El usuario gestiona reservas ", usuarioLog.getCorreo(), "Admin Aula");
             }
 
             if (session.getAttribute("reservasProfesor") != null) {
@@ -155,6 +158,9 @@
                                 }
                             }
                         %>
+                        <br>
+                        <input type="submit" name="boton" value="Volver">&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="submit" name="boton" value="Cerrar sesion">
                     </div>
                 </form>
             </section>

@@ -24,8 +24,9 @@
     </head>
     <body>
         <%
+            session.setAttribute("rol", "1");
             ArrayList<Bitacora> logBitacora = null;
-
+            
             Conexion.ConexionEstatica.abrirBD();
             logBitacora = Conexion.ConexionEstatica.obtenerBitacora();
             Conexion.ConexionEstatica.cerrarBD();
@@ -44,7 +45,7 @@
                 <iframe class="perfil" src="../perfil_usuario.jsp" scrolling="no"></iframe>
             </section>
             <section class="content">
-                <nav>
+                <!--<nav>
                     <ul>
                         <form name="frmGestUsuarios" action="../../controlador.jsp">
                             <li><input type="submit" name="boton" value="Gestionar Usuarios"  class="active"></li>
@@ -53,7 +54,7 @@
                             <li><input type="submit" name="boton" value="Ver Bitacora"></li>
                         </form>
                     </ul>
-                </nav>
+                </nav>-->
                 <h1 style="text-align: center; font-size: 14pt;">Ver Bitácora</h1>
                 <form id="bitacora">
                     <table id="tblData">

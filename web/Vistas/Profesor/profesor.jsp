@@ -42,6 +42,7 @@
     </head>
     <body onload="getDate()">
         <%
+            session.setAttribute("rol", "3");
             Usuario usuarioLog = null;
             ArrayList<Aula> aulas = null;
             ArrayList<ReservaAula> reservas = null;
@@ -56,11 +57,18 @@
 
             if (session.getAttribute("usuarioLog") != null) {
                 usuarioLog = (Usuario) session.getAttribute("usuarioLog");
-
+                
                 //Obtener todas las reservas de la tabla reservas
                 ConexionEstatica.abrirBD();
                 reservasProfesor = ConexionEstatica.obtenerReservasAulaProfesor(usuarioLog);
                 ConexionEstatica.cerrarBD();
+
+                //Obtenemos todas las aulas de la BBDD
+                ConexionEstatica.abrirBD();
+                aulas = ConexionEstatica.obtenerAulas();
+                ConexionEstatica.cerrarBD();
+                
+                Bitacora.Bitacora.escribirBitacora("El usuario gestiona reservas ", usuarioLog.getCorreo(), "Profesor");
             }
 
             if (session.getAttribute("aula") != null) {
@@ -93,7 +101,10 @@
                             ELIGE FECHA<input type="date" name="fecha" id="fecha"><br><br>
                             ELIGE AULA
                             <select id="aula" name="aula">
-                                <%  for (int idx = 0; idx < aulas.size(); idx++) {
+
+
+                                <%
+                                    for (int idx = 0; idx < aulas.size(); idx++) {
                                         Aula aula = (Aula) aulas.get(idx);
                                 %>
                                 <%

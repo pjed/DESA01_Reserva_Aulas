@@ -74,7 +74,6 @@
                         if (cap.equals(capVal)) {
                             captcha = true;
                         }
-
                     }
 
                     if (captcha) {
@@ -134,6 +133,8 @@
 
                     session.setAttribute("usuarioLog", existeUsuario);
                     session.setAttribute("rolSeleccionado", "5");
+                    Bitacora.Bitacora.escribirBitacora("El usuario inicia sesión ", existeUsuario.getCorreo(), "Selecciona Perfil");
+
                     response.sendRedirect("Vistas/rol_entrar.jsp");
                 } else {
                     //Email.send("noreply@gestionaulas.com", "Password1234", existeUsuario.getCorreo(), "Activación de la contraseña", "En el transcurso de 1 hora se le activará la cuenta de usuario para poder acceder al sistema. Gracias. No intente responder a este correo.");
@@ -197,7 +198,7 @@
         if (boton.equals("Administrador General")) {
             rolSeleccionado = "1";
             session.setAttribute("rolSeleccionado", rolSeleccionado);
-            
+
             if (session.getAttribute("usuarioLog") != null) {
                 u = (Usuario) session.getAttribute("usuarioLog");
 
@@ -218,7 +219,7 @@
 
                 Bitacora.Bitacora.escribirBitacora("Inicia sesión el usuario", u.getCorreo(), rol);
             }
-            
+
             response.sendRedirect("Vistas/Administrador_General/admin_general.jsp");
         }
 
@@ -233,7 +234,7 @@
 
             //guardamos las aulas en sesion
             session.setAttribute("aulas", aulas);
-            
+
             if (session.getAttribute("usuarioLog") != null) {
                 u = (Usuario) session.getAttribute("usuarioLog");
 
@@ -254,7 +255,6 @@
 
                 Bitacora.Bitacora.escribirBitacora("Inicia sesión el usuario", u.getCorreo(), rol);
             }
-            
 
             response.sendRedirect("Vistas/Administrador_Aula/admin_aula.jsp");
         }
@@ -267,7 +267,7 @@
             ConexionEstatica.abrirBD();
             ArrayList<Aula> aulas = ConexionEstatica.obtenerAulas();
             ConexionEstatica.cerrarBD();
-            
+
             if (session.getAttribute("usuarioLog") != null) {
                 u = (Usuario) session.getAttribute("usuarioLog");
 
@@ -307,7 +307,7 @@
             ConexionEstatica.cerrarBD();
 
             session.setAttribute("reservas", reservas);
-            String rol = (String) session.getAttribute("rolSeleccionado");
+            String rol = (String) session.getAttribute("rol");
 
             if (rol.equals("1")) {
                 //Administrador General
@@ -385,8 +385,8 @@
                 ConexionEstatica.cerrarBD();
 
             }
-            if (session.getAttribute("rolSeleccionado") != null) {
-                String rol = (String) session.getAttribute("rolSeleccionado");
+            if (session.getAttribute("rol") != null) {
+                String rol = (String) session.getAttribute("rol");
 
                 if (rol.equals("3")) {
                     response.sendRedirect("Vistas/Profesor/profesor.jsp");
@@ -407,32 +407,29 @@
             if (session.getAttribute("usuarioLog") != null) {
                 usuario = (Usuario) session.getAttribute("usuarioLog");
 
-                if (session.getAttribute("rolSeleccionado") != null) {
-                    rolSeleccionado = (String) session.getAttribute("rolSeleccionado");
+                if (session.getAttribute("rol") != null) {
+                    rolSeleccionado = (String) session.getAttribute("rol");
 
                     if (rolSeleccionado.equals("1")) {
                         rol = "Adm General";
+                        Bitacora.Bitacora.escribirBitacora("El usuario ha cerrado sesión", usuario.getCorreo(), rol);
                     }
 
                     if (rolSeleccionado.equals("2")) {
                         rol = "Adm Aula";
+                        Bitacora.Bitacora.escribirBitacora("El usuario ha cerrado sesión", usuario.getCorreo(), rol);
                     }
 
                     if (rolSeleccionado.equals("3")) {
                         rol = "Profesor";
+                        Bitacora.Bitacora.escribirBitacora("El usuario ha cerrado sesión", usuario.getCorreo(), rol);
                     }
                     if (rolSeleccionado.equals("4")) {
                         rol = "Ver perfil";
-                        Bitacora.Bitacora.escribirBitacora("El usuario ha modificado su perfil ", usuario.getCorreo(), rol);
-                    }
-
-                    if (rolSeleccionado.equals("5")) {
-                        rol = "Selecciona perfil";
-                        Bitacora.Bitacora.escribirBitacora("El usuario selecciona perfil ", usuario.getCorreo(), rol);
+                        Bitacora.Bitacora.escribirBitacora("El usuario ha cerrado la sesión modificando su perfil ", usuario.getCorreo(), rol);
                     }
                 }
 
-                Bitacora.Bitacora.escribirBitacora("El usuario ha cerrado sesión", usuario.getCorreo(), rol);
                 session.invalidate();
                 response.sendRedirect("index.jsp");
             }
@@ -527,13 +524,8 @@
             response.sendRedirect("Vistas/Administrador_General/gestusuarios.jsp");
         }
 
-        if (boton.equals("Ver Perfil")) {
-            session.setAttribute("rolSeleccionado", "4");
-            response.sendRedirect("Vistas/perfil_usuario.jsp");
-        }
-
         if (boton.equals("Reservado")) {
-            if (session.getAttribute("rolSeleccionado") != null) {
+            /*if (session.getAttribute("rolSeleccionado") != null) {
                 rolSeleccionado = (String) session.getAttribute("rolSeleccionado");
 
                 if (rolSeleccionado.equals("2")) {
@@ -543,7 +535,7 @@
                 if (rolSeleccionado.equals("3")) {
                     response.sendRedirect("Vistas/Profesor/profesor.jsp");
                 }
-            }
+            }*/
         }
     }
 %>

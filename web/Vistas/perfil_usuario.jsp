@@ -23,6 +23,7 @@
     </head>
     <body>
         <%
+            session.setAttribute("rolSeleccionado", "4");
             Usuario usuarioLog = null;
             if (session.getAttribute("usuarioLog") != null) {
                 usuarioLog = (Usuario) session.getAttribute("usuarioLog");

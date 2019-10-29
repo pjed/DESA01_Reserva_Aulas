@@ -48,12 +48,13 @@
                     // Es un campo fichero: guardamos el fichero en alguna carpeta (en este caso perfiles).
                     //Si lo ponemos como sigue: el archivo se guardará en 'glassfish5/glassfish/domains/domain1/config/perfiles'.
                     //Este directorio, por seguridad, luego no será accesible.
-                    String rutaDestino = "/home/daw201/";
-                    File fichero = new File(rutaDestino, usuarioLog.getDni()); //El archivo se guardará en 'glassfish5/glassfish/domains/domain1/config/perfiles'.
+                    String rutaDestinoLinux = "/home/daw201/";
+                    //String rutaDestinoWindows = "\\%USERNAME%\\Documentos\\";
+                    File fichero = new File(rutaDestinoLinux, usuarioLog.getDni()); //El archivo se guardará en 'glassfish5/glassfish/domains/domain1/config/perfiles'.
                     if(fichero.exists()){
                         fichero.delete();
                     }
-                    fichero = new File(rutaDestino, usuarioLog.getDni());
+                    fichero = new File(rutaDestinoLinux, usuarioLog.getDni());
                     uploaded.write(fichero);
                     //Pasamos a binario la imagen para almacenarla en MySQL en el campo BLOB.
                     byte[] icono = new byte[(int) fichero.length()];

@@ -4,6 +4,7 @@
     Author     : daw201
 --%>
 
+<%@page import="Usuario.Usuario"%>
 <%@page import="Conexion.ConexionEstatica"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Usuario.Aula"%>
@@ -21,6 +22,14 @@
     </head>
     <body>
         <%
+            session.setAttribute("rol", "2");
+            
+            if (session.getAttribute("usuarioLog") != null) {
+                Usuario usuarioLog = (Usuario) session.getAttribute("usuarioLog");
+                
+                Bitacora.Bitacora.escribirBitacora("El usuario gestiona aulas ", usuarioLog.getCorreo(), "Admin Aula");
+            }
+            
             ConexionEstatica.abrirBD();
             ArrayList<Aula> aulas = ConexionEstatica.obtenerAulas();
             ConexionEstatica.cerrarBD();
