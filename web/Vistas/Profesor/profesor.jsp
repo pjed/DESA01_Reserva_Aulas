@@ -119,28 +119,35 @@
                         %>
                         <h3 style="text-align: center;"><%out.print(fecha);%></h3>
                         <h3 style="text-align: center;">AULA&nbsp;<%out.print(aul);%></h3>
-                        <table id="aulas" style="margin: 0 auto; width: 50%">
-                            <thead>
-                            <th>Id Reserva</th><th>Hora Comienzo</th><th>Hora final</th><th>Reservado</th>
+                        <table role="table" id="aulas" style="margin: 0 auto; width: 50%">
+                            <thead role="rowgroup">
+                                <tr role="row">
+                                    <th role="columnheader">Id Reserva</th>
+                                    <th role="columnheader">Hora Comienzo</th>
+                                    <th role="columnheader">Hora final</th>
+                                    <th role="columnheader">Reservado</th>
+                                </tr>
                             </thead>
-                            <%
-                                for (int idx = 0; idx < reservas.size(); idx++) {
-                                    ReservaAula ra = reservas.get(idx);
-                            %>
+                            <tbody role="rowgroup">
+                                <%
+                                    for (int idx = 0; idx < reservas.size(); idx++) {
+                                        ReservaAula ra = reservas.get(idx);
+                                %>
                             <form name="frmCRUD" action="../../controlador.jsp" method="POST">
-                                <tr>
-                                    <td><input type="text" name="franja" value="<%out.print(ra.getIdFranja());%>" readonly class="readonly"></td>
-                                    <td><input type="text" name="inicio" value="<%out.print(ra.getInicio());%>" readonly class="readonly"></td>
-                                    <td><input type="text" name="fin" value="<%out.print(ra.getFin());%>" readonly class="readonly"></td>
-                                    <td><input type="submit" name="boton" value="<%out.print(ra.getEstadoReserva());%>"></td>
+                                <tr role="row">
+                                    <td role="cell"><input type="text" name="franja" value="<%out.print(ra.getIdFranja());%>" readonly class="readonly"></td>
+                                    <td role="cell"><input type="text" name="inicio" value="<%out.print(ra.getInicio());%>" readonly class="readonly"></td>
+                                    <td role="cell"><input type="text" name="fin" value="<%out.print(ra.getFin());%>" readonly class="readonly"></td>
+                                    <td role="cell"><input type="submit" name="boton" value="<%out.print(ra.getEstadoReserva());%>"></td>
                                 </tr>
                             </form>
                             <%
                                 }
                             %>
-                            <tr>
-                                <td colspan="4"><input type="submit" name="boton" value="Ver reservas profesor"></td>
+                            <tr role="row">
+                                <td colspan="4" role="cell"><input type="submit" name="boton" value="Ver reservas profesor"></td>
                             </tr>
+                            </tbody>
                         </table>
                         <%
                             }
@@ -151,26 +158,32 @@
                                 if (reservasProfesor.size() > 0) {
                         %>
                         <h2 style="text-align: center;">Reservas del profesor</h2>
-                        <table id="reservasProfe" style="margin: 0 auto; width: 50%">
-                            <thead>
-                            <th>Id Reserva</th><th>Fecha</th><th>Número Aula</th>
+                        <table role="table" id="reservasProfe" style="margin: 0 auto; width: 50%">
+                            <thead role="rowgroup">
+                                <tr role="row">
+                                    <th role="columnheader">Id Reserva</th>
+                                    <th role="columnheader">Fecha</th>
+                                    <th role="columnheader">Número Aula</th>
+                                </tr>
                             </thead>
-                            <%
-                                for (int idx = 0; idx < reservasProfesor.size(); idx++) {
-                                    Reserva rp = reservasProfesor.get(idx);
-                            %>
+                            <tbody role="rowgroup">
+                                <%
+                                    for (int idx = 0; idx < reservasProfesor.size(); idx++) {
+                                        Reserva rp = reservasProfesor.get(idx);
+                                %>
                             <form name="frmCRUD" action="../../controlador.jsp" method="POST">
-                                <tr>
-                                    <td><input type="text" name="idReserva"  value="<%out.print(rp.getIdReserva());%>" readonly class="readonly"></td>
-                                    <td><input type="text" name="fecha" readonly value="<%out.print(rp.getFecha());%>" readonly class="readonly"> </td>
-                                    <td><input type="text" name="codAula" readonly value="<%out.print(rp.getCodAula());%>" readonly class="readonly"> </td>
-                                    <td><input type="submit" name="boton" value="Ver Detalles"></td>
-                                    <td><input type="submit" name="boton" value="Eliminar Reserva"></td>
+                                <tr role="row">
+                                    <td role="cell"><input type="text" name="idReserva"  value="<%out.print(rp.getIdReserva());%>" readonly class="readonly"></td>
+                                    <td role="cell"><input type="text" name="fecha" readonly value="<%out.print(rp.getFecha());%>" readonly class="readonly"> </td>
+                                    <td role="cell"><input type="text" name="codAula" readonly value="<%out.print(rp.getCodAula());%>" readonly class="readonly"> </td>
+                                    <td role="cell"><input type="submit" name="boton" value="Ver Detalles"></td>
+                                    <td role="cell"><input type="submit" name="boton" value="Eliminar Reserva"></td>
                                 </tr>
                             </form>
                             <%
                                 }
                             %>
+                            </tbody>
                         </table>
                         <%
                                 }
@@ -199,8 +212,8 @@
                             %>
                         </div>
                         <br>
-                            <input type="submit" name="boton" value="Volver">&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="submit" name="boton" value="Cerrar sesion">
+                        <input type="submit" name="boton" value="Volver">&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="submit" name="boton" value="Cerrar sesion">
                     </div>
                 </form>
             </section>

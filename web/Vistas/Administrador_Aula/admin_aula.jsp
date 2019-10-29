@@ -21,6 +21,7 @@
         <script type="text/javascript" src="../../js/jquery-3.4.1.min.js"></script>
         <link rel="stylesheet" type="text/css" href="../../css/reserva.css">
         <link rel="stylesheet" type="text/css" href="../../css/rol_entrar.css">
+        <link rel="stylesheet" type="text/css" href="../../css/paginacion.css">
         <script>
             var fechaGlobal = null;
             $(document).ready(function () {
@@ -89,7 +90,7 @@
             </section>
             <section class="content" id="contenido">
                 <form name="frmAdminGeneral" action="../../controlador.jsp" method="POST">
-                    <div id="aulas_tabla" style="margin: 0 auto; width: 50%; text-align: center;">
+                    <div id="aulas_tabla" style="margin: 0 auto; width: 70%; text-align: center;">
                         ELIGE FECHA<input type="date" name="fecha" id="fecha"><br><br>
                         ELIGE AULA
                         <select id="aula" name="aula">
@@ -120,36 +121,36 @@
                         %>
                         <h3 style="text-align: center;"><%out.print(fecha);%></h3>
                         <h3 style="text-align: center;">AULA&nbsp;<%out.print(aul);%></h3>
-                        <table id="aulas" style="margin: 0 auto; width: 50%">
-                            <thead>
-                            <th>Id Reserva</th><th>Hora Comienzo</th><th>Hora final</th><th>Reservado</th>
+                        <table role="table" id="aulas">
+                            <thead role="rowgroup">
+                                <tr role="row">
+                                    <th role="columnheader">Id Reserva</th>
+                                    <th role="columnheader">Hora Comienzo</th>
+                                    <th role="columnheader">Hora final</th><th>Reservado</th>
+                                </tr>
                             </thead>
-                            <%
-                                for (int idx = 0; idx < reservas.size(); idx++) {
-                                    ReservaAula ra = reservas.get(idx);
-                            %>
+                            <tbody role="rowgroup">
+                                <%
+                                    for (int idx = 0; idx < reservas.size(); idx++) {
+                                        ReservaAula ra = reservas.get(idx);
+                                %>
                             <form name="frmCRUD" action="../../controlador.jsp" method="POST">
-                                <tr>
-                                    <td><input type="text" name="franja" value="<%out.print(ra.getIdFranja());%>" readonly class="readonly"></td>
-                                    <td><input type="text" name="inicio" value="<%out.print(ra.getInicio());%>" readonly class="readonly"></td>
-                                    <td><input type="text" name="fin" value="<%out.print(ra.getFin());%>" readonly class="readonly"></td>
-                                    <td><input type="submit" name="boton" value="<%out.print(ra.getEstadoReserva());%>"></td>
+                                <tr role="row">
+                                    <td role="cell"><input type="text" name="franja" value="<%out.print(ra.getIdFranja());%>" readonly class="readonly"></td>
+                                    <td role="cell"><input type="text" name="inicio" value="<%out.print(ra.getInicio());%>" readonly class="readonly"></td>
+                                    <td role="cell"><input type="text" name="fin" value="<%out.print(ra.getFin());%>" readonly class="readonly"></td>
+                                    <td role="cell"><input type="submit" name="boton" value="<%out.print(ra.getEstadoReserva());%>"></td>
                                 </tr>
                             </form>
                             <%
                                 }
                             %>
-                            <tr>
-                                <td colspan="4">
-                                    <input type="submit" name="boton" value="Gestionar aula">
-                                </td>                                    
-                            </tr>
-                            <tr>
-                                <td colspan="4">
-                                    <input type="submit" name="boton" value="Gestionar franjas horarias">
-                                </td>                                    
-                            </tr>
+                            </tbody>
                         </table>
+                        <div style="margin: 0 auto;">
+                            <input type="submit" name="boton" value="Gestionar aula">
+                            <input type="submit" name="boton" value="Gestionar franjas horarias">
+                        </div>
                         <%
                                 }
                             }

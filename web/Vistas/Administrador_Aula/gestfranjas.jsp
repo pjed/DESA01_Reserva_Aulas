@@ -17,6 +17,7 @@
         <script type="text/javascript" src="../../js/reserva.js"></script>
         <link rel="stylesheet" type="text/css" href="../../css/reserva.css">
         <link rel="stylesheet" type="text/css" href="../../css/rol_entrar.css">
+        <link rel="stylesheet" type="text/css" href="../../css/paginacion.css">
     </head>
     <body>
         <%
@@ -37,8 +38,8 @@
             </section>
             <section class="content" id="contenido">
                 <h1 style="margin: 0 auto; text-align: center; margin-top: 50px;">Gestión de Franjas Horarias</h1>
-                <form name="frmGestFranjas" action="../../controlador.jsp" method="POST">
-                    <table style="margin: 0 auto; width: 20%; text-align: center;">
+                <form name="frmGestFranjas" id="franjas" action="../../controlador.jsp" method="POST">
+                    <table style="margin: 0 auto; width: 30%; text-align: center;">
                         <thead>
                         <th>Id Franja</th>
                         <th>Inicio</th>

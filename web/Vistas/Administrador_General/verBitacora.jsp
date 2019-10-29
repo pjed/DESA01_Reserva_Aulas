@@ -55,30 +55,32 @@
                     </ul>
                 </nav>
                 <h1 style="text-align: center; font-size: 14pt;">Ver Bitácora</h1>
-                <table id="tblData">
-                    <thead>
-                    <th class="span_header">Acción</th>
-                    <th class="span_header">Fecha y Hora de la acción</th>
-                    <th class="span_header">Correo</th>
-                    <th class="span_header">Rol</th>
-                    </thead>
+                <form id="bitacora">
+                    <table id="tblData">
+                        <thead>
+                        <th class="span_header">Acción</th>
+                        <th class="span_header">Fecha y Hora de la acción</th>
+                        <th class="span_header">Correo</th>
+                        <th class="span_header">Rol</th>
+                        </thead>
 
-                    <%                    if (logBitacora.size() > 0) {
-                            for (int idx = 0; idx < logBitacora.size(); idx++) {
-                                Bitacora bi = logBitacora.get(idx);
+                        <%                    if (logBitacora.size() > 0) {
+                                for (int idx = 0; idx < logBitacora.size(); idx++) {
+                                    Bitacora bi = logBitacora.get(idx);
 
-                    %>
-                    <tr>
-                        <td><span ><%out.print(bi.getAccion());%></span></td>
-                        <td class="td_span_bitacora"><span><%out.print(bi.getFyh());%></span></td>
-                        <td class="td_span_bitacora"><span><%out.print(bi.getCorreo());%></span></td>
-                        <td><span><%out.print(bi.getRol());%></span></td>
-                    </tr>
-                    <%                    }
+                        %>
+                        <tr>
+                            <td><span ><%out.print(bi.getAccion());%></span></td>
+                            <td class="td_span_bitacora"><span><%out.print(bi.getFyh());%></span></td>
+                            <td class="td_span_bitacora"><span><%out.print(bi.getCorreo());%></span></td>
+                            <td><span><%out.print(bi.getRol());%></span></td>
+                        </tr>
+                        <%                    }
 
-                        }
-                    %>
-                </table>
+                            }
+                        %>
+                    </table>
+                </form>
             </section>
             <section class="footer"><span>Desa01 - Reserva de Aulas &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CIFP Virgen de Gracia</span></section>
         </main>

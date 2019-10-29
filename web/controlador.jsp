@@ -154,7 +154,7 @@
         String clavePredeterminada = "Chu";
 
         if (boton.equals("Restablecer Password")) {
-            String usuario = request.getParameter("nombre");
+            String usuario = request.getParameter("usuario");
             String clave = request.getParameter("password");
             String claveCod = Codificar.codifica(clave);
             ConexionEstatica.abrirBD();
@@ -165,7 +165,7 @@
                 ConexionEstatica.Modificar_Contrasena("USUARIOS", Codificar.codifica(clavePredeterminada), usu);
                 ConexionEstatica.cerrarBD();
                 String correo_destino = usu.getCorreo();
-                String pass_destino = "Contraseña del correo personal del usuario sin codificar";
+                String pass_destino = "Chubaca2019";
                 Email.send(correo_destino, pass_destino, usu.getNombre_usuario(), "Recuperación de Contraseña", "Tu contraseña ha cambiado ahora es " + clavePredeterminada);
 
                 out.println("<script type=\"text/javascript\">");

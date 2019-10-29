@@ -17,6 +17,7 @@
         <script type="text/javascript" src="../../js/reserva.js"></script>
         <link rel="stylesheet" type="text/css" href="../../css/reserva.css">
         <link rel="stylesheet" type="text/css" href="../../css/rol_entrar.css">
+        <link rel="stylesheet" type="text/css" href="../../css/paginacion.css">
     </head>
     <body>
         <%
@@ -33,9 +34,9 @@
                 <iframe class="perfil" src="../perfil_usuario.jsp" scrolling="no"></iframe>
             </section>
             <section class="content" id="contenido">
-                <form name="frmGestAulas" action="../../controlador.jsp" method="POST">
+                <form name="frmGestAulas" id="aulas" action="../../controlador.jsp" method="POST">
                     <h1 style="margin: 0 auto; text-align: center; margin-top: 50px;">Gestión de Aulas</h1>
-                    <table style="margin: 0 auto; width: 30%; text-align: center;">
+                    <table style="margin: 0 auto; width: 40%; text-align: center;">
                         <thead>
                         <th>Id Aulas</th>
                         <th>Descripción</th>

@@ -45,33 +45,36 @@
                         </form>
                     </ul>
                 </nav>
-                <form name="frmGestUsuario" action="../../controlador.jsp" method="POST">
+                <form name="frmGestUsuario" id="usuarios" action="../../controlador.jsp" method="POST">
                     <h1 style="text-align: center; font-size: 14pt;">Gestión de Usuarios</h1>
-                    <table id="tblData">
-                        <thead>
-                        <th>Dni</th>
-                        <th>Correo</th>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>Edad</th>
-                        <th>Activo</th>
-                        <th></th>
-                        <th>IdRol</th>
-                        <th>Descripción Rol</th>
+                    <table id="tblData" role="table">
+                        <thead role="rowgroup">
+                            <tr role="row">
+                                <th role="columnheader">Dni</th>
+                                <th role="columnheader">Correo</th>
+                                <th role="columnheader">Nombre</th>
+                                <th role="columnheader">Apellidos</th>
+                                <th role="columnheader">Edad</th>
+                                <th role="columnheader">Activo</th>
+                                <th role="columnheader"></th>
+                                <th role="columnheader">IdRol</th>
+                                <th role="columnheader">Descripción Rol</th>
+                            </tr>
                         </thead>
-                        <%
-                            if (usuarios.size() > 0) {
-                                for (int idx = 0; idx < usuarios.size(); idx++) {
-                                    Usuario usu = usuarios.get(idx);
-                        %>
+                        <tbody role="rowgroup">
+                            <%
+                                if (usuarios.size() > 0) {
+                                    for (int idx = 0; idx < usuarios.size(); idx++) {
+                                        Usuario usu = usuarios.get(idx);
+                            %>
                         <form name="frmUsuario" action="../../controlador.jsp" method="POST">
-                            <tr>
-                                <td><input type="text" name="dni" readonly class="readonly" value="<%out.print(usu.getDni());%>" style="width: 75px;"></td>
-                                <td><input type="text" name="correo" id="correo" value="<%out.print(usu.getCorreo());%>" style="width: 200px;" readonly class="readonly"></td>
-                                <td><input type="text" name="nombre" id="nombre" value="<%out.print(usu.getNombre());%>" required><span class="validity"></span></td>
-                                <td><input type="text" name="apellidos" id="apellidos" value="<%out.print(usu.getApellidos());%>" required><span class="validity"></span></td>
-                                <td><input type="number" name="edad" id="edad" value="<%out.print(usu.getEdad());%>" required><span class="validity"></span></td>
-                                <td><input type="text" name="activo" readonly class="readonly" value="<%out.print(usu.getActivo());%>" style="width: 50px;"></td>
+                            <tr role="row">
+                                <td role="cell"><input type="text" name="dni" readonly class="readonly" value="<%out.print(usu.getDni());%>" style="width: 75px;"></td>
+                                <td role="cell"><input type="text" name="correo" id="correo" value="<%out.print(usu.getCorreo());%>" style="width: 200px;" readonly class="readonly"></td>
+                                <td role="cell"><input type="text" name="nombre" id="nombre" value="<%out.print(usu.getNombre());%>" required><span class="validity"></span></td>
+                                <td role="cell"><input type="text" name="apellidos" id="apellidos" value="<%out.print(usu.getApellidos());%>" required><span class="validity"></span></td>
+                                <td role="cell"><input type="number" name="edad" id="edad" value="<%out.print(usu.getEdad());%>" required><span class="validity"></span></td>
+                                <td role="cell"><input type="text" name="activo" readonly class="readonly" value="<%out.print(usu.getActivo());%>" style="width: 50px;"></td>
                                     <%
                                         if (usu.getActivo().equals("0")) {
                                     %>
@@ -93,6 +96,7 @@
                                 }
                             }
                         %>
+                        </tbody>
                     </table>
                 </form>
             </section>

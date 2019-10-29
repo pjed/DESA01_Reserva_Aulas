@@ -26,11 +26,10 @@
             Usuario usuarioLog = null;
             if (session.getAttribute("usuarioLog") != null) {
                 usuarioLog = (Usuario) session.getAttribute("usuarioLog");
-                if (usuarioLog.getFotoBlob() == null) {
                     Conexion.ConexionEstatica.abrirBD();
                     usuarioLog = Conexion.ConexionEstatica.existeUsuario(usuarioLog.getNombre_usuario(), usuarioLog.getPassword());
                     Conexion.ConexionEstatica.cerrarBD();
-                }
+              
             }
         %>
         <form name="frmRolEntrar" action="../controlador.jsp" method="POST">
