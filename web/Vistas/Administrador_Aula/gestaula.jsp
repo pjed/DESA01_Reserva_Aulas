@@ -23,13 +23,13 @@
     <body>
         <%
             session.setAttribute("rol", "2");
-            
+
             if (session.getAttribute("usuarioLog") != null) {
                 Usuario usuarioLog = (Usuario) session.getAttribute("usuarioLog");
-                
+
                 Bitacora.Bitacora.escribirBitacora("El usuario gestiona aulas ", usuarioLog.getCorreo(), "Admin Aula");
             }
-            
+
             ConexionEstatica.abrirBD();
             ArrayList<Aula> aulas = ConexionEstatica.obtenerAulas();
             ConexionEstatica.cerrarBD();
@@ -44,8 +44,7 @@
             </section>
             <section class="content" id="contenido">
                 <form name="frmGestAulas" id="aulas" action="../../controlador.jsp" method="POST">
-                    <h1 style="margin: 0 auto; text-align: center; margin-top: 50px;">Gestión de Aulas</h1>
-                    <table style="margin: 0 auto; width: 40%; text-align: center;">
+                    <table style="margin: 0 auto; width: 50%; margin-top: 20px; text-align: center;">
                         <thead>
                         <th>Id Aulas</th>
                         <th>Descripción</th>
@@ -76,15 +75,11 @@
                                 <td></td>
                             </tr>
                         </form>
-                        <tr>
-                            <td colspan="4">
-                                <input type="submit" name="boton" value="Volver">
-                            </td>
-                        </tr>
                     </table>
+                    <input type="submit" name="boton" value="Volver">
                 </form>
             </section>
-            <section class="footer"><span>Desa01 - Reserva de Aulas &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CIFP Virgen de Gracia</span></section>
+            <section class="footer"><span>Desa01 - Reserva de Aulas --- CIFP Virgen de Gracia</span></section>
         </main>
     </body>
 </html>

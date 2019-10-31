@@ -1,12 +1,12 @@
 $(document).ready(function() {
-  var totalRows = $('#tblData').find('tbody tr:has(td)').length;
-  var recordPerPage = 11;
+  var totalRows = $('#pagUsuarios').find('tbody tr:has(td)').length;
+  var recordPerPage = 2;
   var totalPages = Math.ceil(totalRows / recordPerPage);
   var $pages = $('<div id="pages"></div>');
   for (i = 0; i < totalPages; i++) {
     $('<span class="pageNumber">&nbsp;' + (i + 1) + '</span>').appendTo($pages);
   }
-  $pages.appendTo('#tblData');
+  $pages.appendTo('#pagUsuarios');
 
   $('.pageNumber').hover(
     function() {
@@ -23,7 +23,7 @@ $(document).ready(function() {
     $(tr[i]).show();
   }
   $('span').click(function(event) {
-    $('#tblData').find('tbody tr:has(td)').hide();
+    $('#pagUsuarios').find('tbody tr:has(td)').hide();
     var nBegin = ($(this).text() - 1) * recordPerPage;
     var nEnd = $(this).text() * recordPerPage - 1;
     for (var i = nBegin; i <= nEnd; i++) {
