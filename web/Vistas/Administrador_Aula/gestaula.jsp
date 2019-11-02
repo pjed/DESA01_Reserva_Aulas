@@ -19,6 +19,8 @@
         <link rel="stylesheet" type="text/css" href="../../css/reserva.css">
         <link rel="stylesheet" type="text/css" href="../../css/rol_entrar.css">
         <link rel="stylesheet" type="text/css" href="../../css/paginacion.css">
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+
     </head>
     <body>
         <%
@@ -44,7 +46,7 @@
             </section>
             <section class="content" id="contenido">
                 <form name="frmGestAulas" id="aulas" action="../../controlador.jsp" method="POST">
-                    <table style="margin: 0 auto; width: 50%; margin-top: 20px; text-align: center;">
+                    <table class="gest_aulas">
                         <thead>
                         <th>Id Aulas</th>
                         <th>Descripción</th>

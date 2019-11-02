@@ -15,6 +15,8 @@
         <title>DESA01_Reserva_Aulas</title>
         <link rel="stylesheet" type="text/css" href="../css/rol_entrar.css">
         <link rel="stylesheet" type="text/css" href="../css/hamburguesa.css">
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+
     </head>
     <body>
         <%

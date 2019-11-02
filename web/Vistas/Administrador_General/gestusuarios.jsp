@@ -17,10 +17,11 @@
         <script type="text/javascript" src="../../js/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="../../js/reserva.js"></script>
         <script type="text/javascript" src="../../js/paginacion.js"></script>
-        <script type="text/javascript" src="../../js/paginacionUsuarios.js"></script>
         <link rel="stylesheet" type="text/css" href="../../css/reserva.css">
         <link rel="stylesheet" type="text/css" href="../../css/rol_entrar.css">
         <link rel="stylesheet" type="text/css" href="../../css/paginacion.css">
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+
     </head>
     <body>
         <%
@@ -58,7 +59,7 @@
                 </nav>-->
 
                     <form name="frmGestUsuario" id="usuarios" action="../../controlador.jsp" method="POST">
-                        <table id="pagUsuarios" role="table">
+                        <table id="tblData" role="table">
                             <thead role="rowgroup">
                                 <tr role="row">
                                     <th role="columnheader">Dni</th>

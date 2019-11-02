@@ -13,6 +13,8 @@
         <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="../js/reserva.js"></script>
         <link rel="stylesheet" type="text/css" href="../css/rol_entrar.css">
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+
     </head>
     <body>
         <%!

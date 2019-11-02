@@ -13,6 +13,8 @@
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <script type="text/javascript" src="js/reserva.js"></script>
         <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+
     </head>
     <body>
         <main class="container">
@@ -27,8 +29,8 @@
                     <div class="marco_fuera">
                         <div class="marco_login">
                             <form name="frmLogin" action="controlador.jsp" method="POST">
-                                Usuario: <input type="text" name="usuario" id="usuario" placeholder="Usuario"><br><br>
-                                Contraseña: <input type="password" name="password" id="password" placeholder="Contraseña"><br><br>
+                                <span>Usuario: </span><input type="text" name="usuario" id="usuario" placeholder="Usuario"><br><br>
+                                <span>Contraseña: </span><input type="password" name="password" id="password" placeholder="Contraseña"><br><br>
                                 <!--<input type="submit" name="boton" value="Login" onclick="return compruebaLogin()"><br><br>-->
                                 <input type="submit" name="boton" value="Login" onclick="return validaCookie()"><br><br>
                                 <span id="val_log" name="val_log" id="val_log" style="color: red;"></span><br>

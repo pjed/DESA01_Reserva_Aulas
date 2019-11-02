@@ -21,6 +21,8 @@
         <script type="text/javascript" src="../../js/jquery-3.4.1.min.js"></script>
         <link rel="stylesheet" type="text/css" href="../../css/reserva.css">
         <link rel="stylesheet" type="text/css" href="../../css/rol_entrar.css">
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+
         <script>
             var fechaGlobal = null;
             $(document).ready(function () {

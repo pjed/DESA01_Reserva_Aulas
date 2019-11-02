@@ -124,3 +124,17 @@ You could also use a data-* attribute and content for this. That way "bloats" th
     #franjas td:nth-of-type(4):before { content: ""; }
     #franjas td:nth-of-type(5):before { content: ""; }
 }
+/* Portrait */
+@media only screen 
+and (min-device-width: 320px) 
+and (max-device-width: 480px)
+and (-webkit-min-device-pixel-ratio: 2)
+and (orientation: portrait) {
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        margin-top: 100px;
+        margin: 0 auto;
+        width: 60%;
+    }
+}

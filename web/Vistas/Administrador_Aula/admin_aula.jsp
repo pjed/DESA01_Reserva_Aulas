@@ -22,6 +22,7 @@
         <link rel="stylesheet" type="text/css" href="../../css/reserva.css">
         <link rel="stylesheet" type="text/css" href="../../css/rol_entrar.css">
         <link rel="stylesheet" type="text/css" href="../../css/paginacion.css">
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
         <script>
             var fechaGlobal = null;
             $(document).ready(function () {
@@ -63,7 +64,7 @@
 
             if (session.getAttribute("usuarioLog") != null) {
                 usuarioLog = (Usuario) session.getAttribute("usuarioLog");
-                
+
                 Bitacora.Bitacora.escribirBitacora("El usuario gestiona reservas ", usuarioLog.getCorreo(), "Admin Aula");
             }
 
@@ -93,9 +94,9 @@
             </section>
             <section class="content" id="contenido">
                 <form name="frmAdminGeneral" action="../../controlador.jsp" method="POST">
-                    <div id="aulas_tabla" style="margin: 0 auto; width: 70%; text-align: center;">
-                        ELIGE FECHA<input type="date" name="fecha" id="fecha"><br><br>
-                        ELIGE AULA
+                    <div id="aulas_tabla" class="aulas_tabla">
+                        <span>ELIGE FECHA</span><input type="date" name="fecha" id="fecha"><br><br>
+                        <span>ELIGE AULA</span>
                         <select id="aula" name="aula">
                             <%                        for (int idx = 0; idx < aulas.size(); idx++) {
                                     Aula aula = (Aula) aulas.get(idx);
@@ -122,8 +123,8 @@
                                 if (reservas.size() > 0) {
 
                         %>
-                        <h3 style="text-align: center;"><%out.print(fecha);%></h3>
-                        <h3 style="text-align: center;">AULA&nbsp;<%out.print(aul);%></h3>
+                        <h3 class="centrado"><%out.print(fecha);%></h3>
+                        <h3 class="centrado">AULA&nbsp;<%out.print(aul);%></h3>
                         <table role="table" id="aulas">
                             <thead role="rowgroup">
                                 <tr role="row">
@@ -152,7 +153,7 @@
                         </table>
                         <div style="margin: 0 auto;">
                             <input type="submit" name="boton" value="Gestionar aula">
-                            <input type="submit" name="boton" value="Gestionar franjas horarias">
+                            <input type="submit" name="boton" value="Gestionar franjas">
                         </div>
                         <%
                                 }

@@ -21,12 +21,14 @@
         <link rel="stylesheet" type="text/css" href="../../css/paginacion.css">
         <script type="text/javascript" src="../../js/jquery-3.4.1.min.js"></script>
         <script type="text/javascript" src="../../js/paginacion.js"></script>
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
+
     </head>
     <body>
         <%
             session.setAttribute("rol", "1");
             ArrayList<Bitacora> logBitacora = null;
-            
+
             Conexion.ConexionEstatica.abrirBD();
             logBitacora = Conexion.ConexionEstatica.obtenerBitacora();
             Conexion.ConexionEstatica.cerrarBD();
@@ -56,7 +58,7 @@
                     </ul>
                 </nav>-->
                 <h1 style="text-align: center; font-size: 14pt;">Ver Bitácora</h1>
-                <form id="bitacora">
+                <form id="bitacora" action="../../controlador.jsp">
                     <table id="tblData">
                         <thead>
                         <th class="span_header">Acción</th>
@@ -81,6 +83,10 @@
                             }
                         %>
                     </table>
+                    <br>
+                    <br>
+                    <br>
+                    <input type="submit" name="boton" value="Volver">&nbsp;&nbsp;&nbsp;&nbsp;
                 </form>
             </section>
             <section class="footer"><span>Desa01 - Reserva de Aulas --- CIFP Virgen de Gracia</span></section>

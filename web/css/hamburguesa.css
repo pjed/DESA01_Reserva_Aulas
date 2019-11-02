@@ -241,14 +241,43 @@ and (max-device-width : 1024px)
 and (orientation : portrait){
     nav{display: none;}
     .w3-teal,.w3-hover-teal:hover{color:#fff!important;background-color:#5E8EBD!important; display: block}
-    p{height: 960px;}
+    p{height: 960px; font-size: 15pt;}
 }
 
 @media only screen 
-and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : landscape){
     nav{display: none;}
     .w3-teal,.w3-hover-teal:hover{color:#fff!important;background-color:#5E8EBD!important; display: block}
     p{height: 400px;}
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+    nav{display: none;}
+    .w3-teal,.w3-hover-teal:hover{color:#fff!important;background-color:#5E8EBD!important; display: block}
+       p{font-size: 30pt;}
+       .w3-sidebar{
+           width: 300px;
+           font-size: 25pt;
+       }
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+    nav{display: none;}
+    .w3-teal,.w3-hover-teal:hover{color:#fff!important;background-color:#5E8EBD!important; display: block}
+    p{height: 315px;font-size: 25pt;}
+       .w3-sidebar{
+           width: 300px;
+           font-size: 25pt;
+       }
 }

@@ -439,7 +439,7 @@
             response.sendRedirect("Vistas/Administrador_Aula/gestaula.jsp");
         }
 
-        if (boton.equals("Gestionar franjas horarias")) {
+        if (boton.equals("Gestionar franjas")) {
             response.sendRedirect("Vistas/Administrador_Aula/gestfranjas.jsp");
         }
 

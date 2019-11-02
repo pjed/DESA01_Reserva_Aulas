@@ -24,6 +24,7 @@ body{
     background-repeat: no-repeat;  
     background-size: 100% 100%; 
     width: 100%;
+    font-family: 'Open Sans',serif;
 }
 
 
@@ -125,6 +126,8 @@ and (orientation : portrait) {
         background-repeat: no-repeat;  
         background-size: 1100px 100%; 
         width: 100%;
+        font-size: 15pt;
+        font-family: 'Open Sans',serif;
     }
 
 
@@ -167,16 +170,35 @@ and (orientation : portrait) {
     .marco_fuera{
         background-color: #5E8EBD; 
         padding: 25px; 
-        width: 400px; 
-        height: 250px;
+        width: 600px; 
+        height: 350px;
     }
 
     .marco_login{
         text-align: center; 
         padding: 20px; 
         background-color: white; 
-        width: 350px; 
-        height: 200px;
+        width: 550px; 
+        height: 300px;
+    }
+    a{
+        font-size: 15pt;
+    }
+    input[type=submit]{
+        width: 175px;
+        height: 50px;
+    }
+    input[type=text]{
+        width: 175px;
+        height: 50px;
+    }
+    
+    input[type=password]{
+        width: 200px;
+        height: 50px;
+    }
+    span{
+        margin-right: 5px;
     }
 
     .logo_fondo{
@@ -237,6 +259,7 @@ and (orientation : landscape)
         background-repeat: no-repeat;  
         background-size: 100% 100%; 
         height: 100vh;
+        font-family: 'Open Sans',serif;
     }
 
 
@@ -313,6 +336,261 @@ and (orientation : landscape)
         grid-column-end: 12;
         text-align: center;
         height: 570px;
+    }
+    .footer {
+        background-color: #C4C4C4;
+        grid-column-start: 1;
+        grid-column-end: 12;
+        text-align: center;
+        padding-top: 25px;
+        padding-bottom: 25px; 
+    }
+
+    .centrado-porcentual {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+    }
+}
+
+
+/* Portrait */
+@media only screen 
+and (min-device-width: 320px) 
+and (max-device-width: 480px)
+and (-webkit-min-device-pixel-ratio: 2)
+and (orientation: portrait) 
+{
+    html { 
+        height: 100vh;
+    }
+
+
+    body{
+        margin: 0;
+        padding: 0;
+        background-image: url('../img/fondo_index.jpg'); 
+        background-repeat: no-repeat;  
+        background-size: 100% 100%; 
+        width: 100%;
+        font-family: 'Open Sans',serif;
+    }
+
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(11, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+    }
+
+
+    .header_logo {
+        display: flex;
+        justify-content: center; 
+        align-items: center; 
+        background-color: #5E8EBD;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        height: 130px;
+        text-align: center;
+    }
+
+    .header {
+        display: flex;
+        justify-content: center; 
+        align-items: center; 
+        background-color: #5E8EBD;
+        grid-column-start: 3;
+        grid-column-end: 12;
+        height: 130px;
+        text-align: center;
+    }
+
+    a{
+        font-size: 22pt;
+    }
+    input[type=submit]{
+        width: 150px;
+        height: 50px;
+        font-size: 20pt;
+    }
+    input[type=text]{
+        width: 150px;
+        height: 50px;
+        font-size: 20pt;
+    }
+    
+    input[type=password]{
+        width: 150px;
+        height: 50px;
+        font-size: 20pt;
+    }
+    span{
+        margin-right: 5px;
+        font-size: 20pt;
+    }
+    
+    .gestiona_aulas{
+        color: white; 
+        font-size: 32pt;
+    }
+
+    .marco_fuera{
+        background-color: #5E8EBD; 
+        padding: 25px; 
+        width: 600px; 
+        height: 350px;
+    }
+
+    .marco_login{
+        text-align: center; 
+        padding: 20px; 
+        background-color: white; 
+        width: 550px; 
+        height: 300px;
+    }
+
+    .logo_fondo{
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        width: 100%; 
+        height: 100%;
+    }
+
+    .logo_pagina{
+        float: left; 
+        background: url(../img/logo.jpg) no-repeat; 
+        background-size: 190px 120px; 
+        margin: 5px; 
+        width: 190px; 
+        height: 120px; 
+    }
+
+    .content {
+        grid-column-start: 1;
+        grid-column-end: 12;
+        text-align: center;
+        height: 1300px;
+    }
+    .footer {
+        background-color: #C4C4C4;
+        grid-column-start: 1;
+        grid-column-end: 12;
+        text-align: center;
+        padding-top: 25px;
+        padding-bottom: 25px; 
+    }
+
+    .centrado-porcentual {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+    }
+}
+
+/* Landscape */
+@media only screen 
+and (min-device-width: 320px) 
+and (max-device-width: 480px)
+and (-webkit-min-device-pixel-ratio: 2)
+and (orientation: landscape) 
+{
+    html { 
+        height: 100vh;
+    }
+
+
+    body{
+        margin: 0;
+        padding: 0;
+        background-image: url('../img/fondo_index.jpg'); 
+        background-repeat: no-repeat;  
+        background-size: 1100px 100%; 
+        width: 100%;
+        font-family: 'Open Sans',serif;
+    }
+
+
+    .container {
+        display: grid;
+        grid-template-columns: repeat(11, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+    }
+
+
+    .header_logo {
+        display: flex;
+        justify-content: center; 
+        align-items: center; 
+        background-color: #5E8EBD;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        height: 130px;
+        text-align: center;
+    }
+
+    .header {
+        display: flex;
+        justify-content: center; 
+        align-items: center; 
+        background-color: #5E8EBD;
+        grid-column-start: 3;
+        grid-column-end: 12;
+        height: 130px;
+        text-align: center;
+    }
+
+    .gestiona_aulas{
+        color: white; 
+        font-size: 32pt;
+    }
+
+    .marco_fuera{
+        background-color: #5E8EBD; 
+        padding: 25px; 
+        width: 400px; 
+        height: 250px;
+    }
+
+    .marco_login{
+        text-align: center; 
+        padding: 20px; 
+        background-color: white; 
+        width: 350px; 
+        height: 200px;
+    }
+
+    .logo_fondo{
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        width: 100%; 
+        height: 100%;
+    }
+
+    .logo_pagina{
+        float: left; 
+        background: url(../img/logo.jpg) no-repeat; 
+        background-size: 190px 120px; 
+        margin: 5px; 
+        width: 190px; 
+        height: 120px; 
+    }
+
+    .content {
+        grid-column-start: 1;
+        grid-column-end: 12;
+        text-align: center;
+        height: 460px;
     }
     .footer {
         background-color: #C4C4C4;
