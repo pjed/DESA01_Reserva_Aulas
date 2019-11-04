@@ -59,7 +59,7 @@
 
             if (session.getAttribute("usuarioLog") != null) {
                 usuarioLog = (Usuario) session.getAttribute("usuarioLog");
-                
+
                 //Obtener todas las reservas de la tabla reservas
                 ConexionEstatica.abrirBD();
                 reservasProfesor = ConexionEstatica.obtenerReservasAulaProfesor(usuarioLog);
@@ -69,7 +69,7 @@
                 ConexionEstatica.abrirBD();
                 aulas = ConexionEstatica.obtenerAulas();
                 ConexionEstatica.cerrarBD();
-                
+
                 Bitacora.Bitacora.escribirBitacora("El usuario gestiona reservas ", usuarioLog.getCorreo(), "Profesor");
             }
 

@@ -114,6 +114,7 @@
                         <input type="submit" name="boton" value="Volver">&nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="submit" name="boton" value="Cerrar sesion">
                     </form>
+            
             </section>
             <section class="footer"><span>Desa01 - Reserva de Aulas --- CIFP Virgen de Gracia</span></section>
         </main>

@@ -249,7 +249,6 @@ and (max-device-width : 1024px)
 and (orientation : landscape){
     nav{display: none;}
     .w3-teal,.w3-hover-teal:hover{color:#fff!important;background-color:#5E8EBD!important; display: block}
-    p{height: 400px;}
 }
 
 /* Portrait */
@@ -275,7 +274,7 @@ and (orientation : landscape){
   and (orientation: landscape) {
     nav{display: none;}
     .w3-teal,.w3-hover-teal:hover{color:#fff!important;background-color:#5E8EBD!important; display: block}
-    p{height: 315px;font-size: 25pt;}
+    p{font-size: 25pt;}
        .w3-sidebar{
            width: 300px;
            font-size: 25pt;
