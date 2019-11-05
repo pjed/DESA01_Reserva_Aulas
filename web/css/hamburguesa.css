@@ -277,6 +277,6 @@ and (orientation : landscape){
     p{font-size: 25pt;}
        .w3-sidebar{
            width: 300px;
-           font-size: 25pt;
+           font-size: 20pt;
        }
 }

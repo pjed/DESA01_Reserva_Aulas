@@ -14,64 +14,6 @@
         <script type="text/javascript" src="js/reserva.js"></script>
         <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
-        <script>
-            /*var veces = 1;
-            $(function () {
-                $("#Login").click(function () {
-
-                    comprobarLogin();
-
-                });
-            });
-
-            function comprobarLogin() {
-                
-                var a = leercookie();
-                //comprueba la existencia de la cookie mediante la búsqueda de un dato conocido
-                if (a === "inactiva") {
-
-                    alert("Se sobrepaso el límite, espere unos seguntos");
-                    $("#usuario").attr("disabled", "disabled");
-                    $("#password").attr("disabled", "disabled");
-                } else {
-                    $("#usuario").attr("enabled", "enabled");
-                    $("#password").attr("enabled", "enabled");
-                    if (veces < 3) {
-
-                        veces += 1;//cuenta oportunidades
-                        $("#usuario").val(" ");
-                        $("#password").val("");
-
-                    } else {
-
-                        document.cookie = "nombre=inactiva;max-age=60"; //Crea un Cookie durante 60 segundos
-
-                        veces = 1;
-                        alert("ha sobrepasado las opciones");
-                        $("#usuario").val(" ");
-                        $("#password").val(" ");
-                        $("#usuario").attr("disabled", "disabled");
-                        $("#password").attr("disabled", "disabled");
-                    }
-
-                }
-                localStorage.setItem("cookie", document.cookie);
-            }
-
-            function leercookie() {
-
-                //var ca = document.cookie.split('=');//Recupera el contenido de la cookie separando la información que interesa
-                var ca = getCookie("cookie").split('=');
-                var c = ca[1];
-
-                return c;
-            }
-
-            function getCookie(c_name) {
-                return localStorage.getItem(c_name);
-            }*/
-
-        </script>
     </head>
     <body>
         <main class="container">
